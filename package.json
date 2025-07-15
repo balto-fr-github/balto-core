@@ -1,5 +1,5 @@
 {
-  "name": "@balto/ui",
+  "name": "@balto-fr-github/ui",
   "version": "0.1.0",
   "description": "Reusable React UI components for all Balto frontend projects",
   "main": "dist/index.mjs",
