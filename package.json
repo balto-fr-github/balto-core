@@ -1,0 +1,54 @@
+{
+  "name": "@balto/ui",
+  "version": "0.1.0",
+  "description": "Reusable React UI components for all Balto frontend projects",
+  "main": "dist/index.mjs",
+  "types": "dist/index.d.mts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.mts"
+    },
+    "./styles": "./dist/styles.css"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "keywords": [
+    "react",
+    "ui",
+    "components",
+    "typescript",
+    "tailwind",
+    "balto"
+  ],
+  "author": "Balto Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/balto/balto-ui.git"
+  },
+  "scripts": {
+    "dev": "tsup --watch",
+    "build": "tsup",
+    "lint": "eslint src --ext .ts,.tsx",
+    "preview-css": "postcss src/styles/tailwind.css -o dist/tailwind.css"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.8",
+    "@types/react-dom": "^19.1.6",
+    "autoprefixer": "^10.4.21",
+    "clsx": "^2.1.1",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17",
+    "tsup": "^8.5.0",
+    "typescript": "^5.8.3"
+  }
+}
