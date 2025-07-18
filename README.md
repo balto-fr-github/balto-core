@@ -1,141 +1,187 @@
-# @balto/ui
+# Balto Core Library
 
-Reusable React UI components for all Balto frontend projects, including:
+Reusable React UI components, constants, and utilities for all Balto frontend projects.
 
-- `balto-product-pages`
-- `balto-landing-pages`
-- `balto-customer-portal`
-- `balto-next-order`
-
-This package is built with **React**, **TypeScript**, and **Tailwind CSS**, and is published as a private package via **GitHub Packages**.
-
----
-
-## 📦 Installation
-
-### 1. Authenticate with GitHub Packages
-
-You must authenticate using a GitHub **Personal Access Token (PAT)**. Each developer must use their own token.
-
-#### 🔐 Create a `.npmrc` file in your project root:
-
-```ini
-@balto:registry=https://npm.pkg.github.com/
-//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
-```
-
-Then define `GITHUB_TOKEN` in your `.env` file or inject it via your CI/CD secrets.
-
-Alternatively, you can log in manually:
+## Installation
 
 ```bash
-npm login --registry=https://npm.pkg.github.com/
+npm install @balto-fr-github/core
+# or
+yarn add @balto-fr-github/core
+# or
+pnpm add @balto-fr-github/core
 ```
 
-When prompted, provide:
+## Setup
 
-- **Username**: your GitHub username
-- **Password**: your GitHub token, not your GitHub password
-- **Email**: any valid email
+### 1. Import Components, Constants, and Utils
 
-See [Token Generation](#-token-generation) below for full instructions.
+#### UI Components
 
-### 2. Install the package
+```tsx
+import { Button, QuantitySelector } from "@balto-fr-github/core/ui";
+
+function App() {
+  return <Button variant="conversion">Click me</Button>;
+}
+```
+
+#### Constants
+
+```tsx
+import { SOME_CONSTANT } from "@balto-fr-github/core/constants";
+
+// Constants will be available here when added
+```
+
+#### Utilities
+
+```tsx
+import { cn } from "@balto-fr-github/core/utils";
+
+// Use the utility functions
+const className = cn("base-class", conditionalClass && "conditional-class");
+```
+
+#### Legacy Import (all in one)
+
+```tsx
+// You can still import everything from the main package
+import { Button, QuantitySelector, cn } from "@balto-fr-github/core";
+```
+
+### 2. Setup Tailwind CSS (Required)
+
+This UI library uses custom colors and utilities that need to be configured in your consuming project's Tailwind setup.
+
+#### Option A: Using the Preset (Recommended)
+
+Add the preset to your `tailwind.config.js`:
+
+```javascript
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@balto-fr-github/core/dist/**/*.{js,mjs}",
+  ],
+  presets: [require("@balto-fr-github/core/tailwind-preset")],
+  theme: {
+    extend: {
+      // Your custom extensions here
+    },
+  },
+  plugins: [],
+};
+```
+
+#### Option B: Manual Configuration
+
+If you prefer to manually configure the colors, extend your `tailwind.config.js`:
+
+```javascript
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./src/**/*.{js,ts,jsx,tsx}",
+    "./node_modules/@balto-fr-github/core/dist/**/*.{js,mjs}",
+  ],
+  theme: {
+    extend: {
+      fontFamily: {
+        inter: ["Inter", "sans-serif"],
+      },
+      colors: {
+        inverted: "#F2F2F2",
+        primary: "#272727",
+        secondary: "#015BD6",
+        disabled: "#ABABAB",
+        "bright-blue": {
+          default: "#0166F4",
+          hover: "#0150B9",
+          disabled: "#B6D0FC",
+          10: "#B6D0FC",
+        },
+      },
+    },
+  },
+  plugins: [],
+};
+```
+
+### 3. Import Styles (Optional)
+
+If you want to use the pre-compiled CSS instead of building with Tailwind:
+
+```css
+/* In your main CSS file */
+@import "@balto-fr-github/core/styles";
+```
+
+**Note**: Using the pre-compiled CSS is not recommended as it may conflict with your own Tailwind build and doesn't allow for customization.
+
+## Why This Setup is Required
+
+The UI components use custom colors and utilities defined in the library's Tailwind configuration:
+
+- `bg-bright-blue-default`, `bg-bright-blue-hover`, `bg-bright-blue-disabled`
+- `text-inverted`, `text-primary`
+- `font-inter` utility class for consistent typography
+
+Without proper Tailwind configuration in your consuming project, these custom styles won't be available and the components will lose their styling.
+
+## Font Configuration
+
+The UI library components use `font-inter` class and expect Inter font to be available. The preset provides a default Inter font configuration, but you can customize it:
+
+```javascript
+// Your tailwind.config.js
+module.exports = {
+  presets: [require("@balto-fr-github/core/tailwind-preset")],
+  theme: {
+    extend: {
+      fontFamily: {
+        // Override the default Inter configuration
+        inter: ["Your Custom Font", "Inter", "sans-serif"],
+        // Or set your own default sans-serif font
+        sans: ["Your Default Font", "system-ui", "sans-serif"],
+      },
+    },
+  },
+};
+```
+
+The preset only defines `font-inter` and doesn't override your default font stack, making it less opinionated about your project's typography choices.
+
+## Components
+
+### Button
+
+```tsx
+import { Button } from "@balto-fr-github/core";
+
+<Button variant="conversion" size="lg">
+  Convert Now
+</Button>;
+```
+
+#### Props
+
+- `variant`: "conversion" | "primary" | "secondary" | "ghost" | "link" | "critical"
+- `size`: "sm" | "md" | "lg"
+- `loading`: boolean
+- `disabled`: boolean
+- `children`: React.ReactNode
+
+## Development
 
 ```bash
-pnpm add @balto/ui
-```
+# Install dependencies
+pnpm install
 
----
+# Start development mode
+pnpm dev
 
-## 🔐 Token Generation
-
-Each developer must generate their own GitHub Personal Access Token (PAT) to install or publish this package.
-
-### ✅ Steps to generate a token:
-
-1. Go to: https://github.com/settings/tokens
-2. Click "Generate new token (classic)"
-3. Set token name and optional expiration
-4. Select the following scopes:
-   - ✅ `read:packages`
-   - ✅ `write:packages` (required for publishing)
-   - ✅ `repo` (required for private repository access)
-5. Click "Generate token" and copy it immediately
-
-💡 **Important**: You will not be able to see the token again after this step. Store it securely.
-
----
-
-## 🚀 Publishing a New Version
-
-Only authorized team members with `write:packages` and `repo` access can publish.
-
-### 1. Make sure you're logged in to GitHub Packages
-
-```bash
-npm login --registry=https://npm.pkg.github.com/
-```
-
-### 2. Update the version in package.json
-
-Follow semver:
-
-```json
-"version": "0.2.0"
-```
-
-### 3. Build the package
-
-```bash
+# Build the library
 pnpm build
 ```
-
-This will generate the `dist/` folder.
-
-### 4. Publish to GitHub Packages
-
-```bash
-npm publish
-```
-
-If successful, you should see:
-
-```
-+ @balto/ui@0.2.0
-```
-
----
-
-## 🧪 Local Development & Linking
-
-To develop and test locally without publishing:
-
-### In balto-ui:
-
-```bash
-pnpm build
-pnpm link
-```
-
-### In the consuming repo (e.g. balto-landing-pages):
-
-```bash
-pnpm link @balto/ui
-```
-
-### To unlink:
-
-```bash
-pnpm unlink @balto/ui
-```
-
-Remember to rebuild after making changes to balto-ui.
-
----
-
-## 🧼 .npmrc and Security Notes
-
-- Your `.npmrc` file is personalized — each dev must use their own token
-- **Do NOT commit `.npmrc`** if it includes a real token — add it to `.gitignore`
-- You can use `${GITHUB_TOKEN}` with `.env` to safely inject via CI
