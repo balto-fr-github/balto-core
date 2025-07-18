@@ -1,5 +1,5 @@
 {
-  "name": "@balto-fr-github/core",
+  "name": "@balto-fr-github/balto-core",
   "version": "0.1.0",
   "description": "Reusable React UI components, constants, and utilities for all Balto frontend projects",
   "main": "dist/index.mjs",
@@ -49,7 +49,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/balto/balto-core.git"
+    "url": "https://github.com/balto-fr-github/balto-core.git"
   },
   "scripts": {
     "dev": "tsup --watch",
