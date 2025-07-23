@@ -1,0 +1,49 @@
+import { useState } from "react";
+
+import { cn } from "../../utils/cn";
+import { Tab } from "./Tab";
+
+type TabData = {
+  id: string;
+  label: string;
+  disabled?: boolean;
+  className?: string;
+};
+
+type TabsProps = {
+  tabs: TabData[];
+  defaultActiveTab?: string;
+  onTabChange?: (tabId: string) => void;
+  className?: string;
+};
+
+export const Tabs: React.FC<TabsProps> = ({
+  tabs,
+  defaultActiveTab,
+  onTabChange,
+  className,
+}) => {
+  const [activeTab, setActiveTab] = useState(
+    defaultActiveTab || tabs[0]?.id || ""
+  );
+
+  const handleTabClick = (tabId: string) => {
+    setActiveTab(tabId);
+    onTabChange?.(tabId);
+  };
+
+  return (
+    <div className={cn("flex items-center gap-2", className)}>
+      {tabs.map((tab) => (
+        <Tab
+          key={tab.id}
+          label={tab.label}
+          isActive={activeTab === tab.id}
+          onClick={() => handleTabClick(tab.id)}
+          disabled={tab.disabled}
+          className={tab.className}
+        />
+      ))}
+    </div>
+  );
+};

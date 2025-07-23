@@ -12,10 +12,6 @@
     "TROUBLESHOOTING.md"
   ],
   "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.mts"
-    },
     "./ui": {
       "import": "./dist/ui.mjs",
       "types": "./dist/ui.d.mts"
@@ -72,6 +68,7 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "class-variance-authority": "^0.7.1",
     "tailwind-merge": "^3.3.1"
   }
 }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { cn } from "../../utils/cn";
 
@@ -60,7 +60,7 @@ const MinusIcon = ({
   </svg>
 );
 
-const QuantitySelector: React.FC<QuantitySelectorProps> = ({
+export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
   initialValue = 1,
   min = 1,
   max = 999,
@@ -130,5 +130,3 @@ const QuantitySelector: React.FC<QuantitySelectorProps> = ({
     </div>
   );
 };
-
-export default QuantitySelector;

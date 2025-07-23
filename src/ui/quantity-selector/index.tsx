@@ -1,1 +1,1 @@
-export { default as QuantitySelector } from "./QuantitySelector";
+export { QuantitySelector } from "./QuantitySelector";

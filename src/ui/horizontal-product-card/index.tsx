@@ -1,0 +1,1 @@
+export { HorizontalProductCard } from "./HorizontalProductCard";

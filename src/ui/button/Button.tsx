@@ -128,6 +128,7 @@ export const Button: ForwardRefExoticComponent<
             />
           </svg>
         )}
+
         {children}
       </button>
     );
