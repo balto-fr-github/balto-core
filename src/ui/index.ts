@@ -1,5 +1,7 @@
 export * from "./badge";
 export * from "./button";
+export * from "./horizontal-card";
+export * from "./horizontal-product-card";
 export * from "./product-card";
 export * from "./quantity-selector";
 export * from "./tabs";
