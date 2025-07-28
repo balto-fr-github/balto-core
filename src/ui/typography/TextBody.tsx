@@ -4,13 +4,13 @@ import { cn } from "../../utils/cn";
 
 type ElementType = keyof JSX.IntrinsicElements;
 
-const textBodyVariants = cva("font-inter text-primary", {
+const textBodyVariants = cva("font-inter", {
   variants: {
     size: {
-      sm: "text-[12px] leading-[22px] md:text-[14px] md:leading-[24px]",
-      md: "text-[14px] leading-[23px] md:text-[16px] md:leading-[25px]",
-      lg: "text-[16px] leading-[24px] md:text-[18px] md:leading-[26px]",
-      "2xl": "text-[24px] leading-[30px] md:text-[30px] md:leading-[38px]",
+      sm: "text-[12px] leading-[20px] md:text-[14px] md:leading-[22px]",
+      md: "text-[14px] leading-[21px] md:text-[16px] md:leading-[23px]",
+      lg: "text-[16px] leading-[22px] md:text-[18px] md:leading-[24px]",
+      "2xl": "text-[24px] leading-[28px] md:text-[30px] md:leading-[36px]",
     },
     weight: {
       regular: "font-normal",
@@ -18,6 +18,10 @@ const textBodyVariants = cva("font-inter text-primary", {
       medium: "font-medium",
       link: "font-medium underline decoration-neutral-70",
       semibold: "font-semibold",
+    },
+    useDefaultColor: {
+      true: "text-primary",
+      false: "",
     },
   },
   compoundVariants: [
@@ -110,6 +114,7 @@ const textBodyVariants = cva("font-inter text-primary", {
   defaultVariants: {
     size: "md",
     weight: "regular",
+    useDefaultColor: true,
   },
 });
 
@@ -124,6 +129,7 @@ export const TextBody = ({
   as = "p",
   size,
   weight,
+  useDefaultColor,
   className,
   children,
   ...props
@@ -132,7 +138,10 @@ export const TextBody = ({
 
   return (
     <Comp
-      className={cn(textBodyVariants({ size, weight }), className)}
+      className={cn(
+        textBodyVariants({ size, weight, useDefaultColor }),
+        className
+      )}
       {...props}
     >
       {children}

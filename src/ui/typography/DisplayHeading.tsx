@@ -6,7 +6,7 @@ const displayHeadingVariants = cva("font-mackinac text-primary", {
   variants: {
     weight: {
       regular: "font-normal tracking-[0px]",
-      italic: "italic font-semibold tracking-[0.2px] md:tracking-[0.4px]",
+      italic: "italic font-bold tracking-[0.2px] md:tracking-[0.4px]",
       bold: "font-bold tracking-[0px] md:tracking-[0.2px]",
     },
     size: {

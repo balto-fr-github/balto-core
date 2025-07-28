@@ -4,23 +4,28 @@ import { cn } from "../../utils/cn";
 
 type ElementType = keyof JSX.IntrinsicElements;
 
-const textLabelVariants = cva("font-mackinac text-primary", {
+const textLabelVariants = cva("font-mackinac leading-[100%]", {
   variants: {
     size: {
-      md: "text-[10px] leading-[12px] md:text-[12px] md:leading-[18px]",
-      lg: "text-[12px] leading-[14px] md:text-[14px]",
+      md: "text-[12px]",
+      lg: "text-[13px] md:text-[14px]",
     },
     weight: {
       regular: "font-normal",
-      italic: "italic font-semibold",
+      italic: "italic font-bold",
       medium: "font-medium",
-      link: "underline font-medium decoration-neutral-70",
+      link: "underline font-bold decoration-neutral-70",
       uppercase: "uppercase font-normal",
+    },
+    useDefaultColor: {
+      true: "text-primary",
+      false: "",
     },
   },
   defaultVariants: {
     size: "md",
     weight: "regular",
+    useDefaultColor: true,
   },
   compoundVariants: [
     { size: "md", weight: "regular", class: "md:tracking-[0.2px]" },
@@ -77,6 +82,7 @@ export const TextLabel = ({
   as = "label",
   size,
   weight,
+  useDefaultColor,
   className,
   children,
   ...props
@@ -85,7 +91,10 @@ export const TextLabel = ({
 
   return (
     <Comp
-      className={cn(textLabelVariants({ size, weight }), className)}
+      className={cn(
+        textLabelVariants({ size, weight, useDefaultColor }),
+        className
+      )}
       {...props}
     >
       {children}

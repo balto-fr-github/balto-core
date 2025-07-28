@@ -47,6 +47,7 @@ module.exports = {
         },
         product: {
           60: "#268753",
+          70: "#973F69",
         },
         "core-neutral-grey": {
           300: "#D6D6D6",

@@ -4,10 +4,10 @@ import { cn } from "../../utils/cn";
 
 type ElementType = keyof JSX.IntrinsicElements;
 
-const textCaptionVariants = cva("font-inter text-primary", {
+const textCaptionVariants = cva("font-inter", {
   variants: {
     size: {
-      md: "text-[10px] leading-[12px] md:text-[12px] md:leading-[18px]",
+      md: "text-[12px] leading-[12px] md:text-[12px] md:leading-[14px]",
     },
     weight: {
       regular: "font-normal",
@@ -16,10 +16,15 @@ const textCaptionVariants = cva("font-inter text-primary", {
       link: "underline font-semibold underline-offset-[1.2px] decoration-[0.72px] decoration-neutral-70",
       uppercase: "uppercase font-normal",
     },
+    useDefaultColor: {
+      true: "text-primary",
+      false: "",
+    },
   },
   defaultVariants: {
     size: "md",
     weight: "regular",
+    useDefaultColor: true,
   },
   compoundVariants: [
     {
@@ -62,6 +67,7 @@ export const TextCaption = ({
   as = "span",
   size,
   weight,
+  useDefaultColor,
   className,
   children,
   ...props
@@ -70,7 +76,10 @@ export const TextCaption = ({
 
   return (
     <Comp
-      className={cn(textCaptionVariants({ size, weight }), className)}
+      className={cn(
+        textCaptionVariants({ size, weight, useDefaultColor }),
+        className
+      )}
       {...props}
     >
       {children}

@@ -2,17 +2,21 @@ import { cva, VariantProps } from "class-variance-authority";
 
 import { cn } from "../../utils/cn";
 
-const textHeadingVariants = cva("font-mackinac text-primary", {
+const textHeadingVariants = cva("font-mackinac", {
   variants: {
     weight: {
       regular: "font-normal",
-      italic: "italic font-semibold",
+      italic: "italic font-bold",
       bold: "font-bold",
     },
     size: {
       sm: "md:text-[24px] md:leading-[30px] text-[20px] leading-[26px] ",
       md: "md:text-[30px] md:leading-[38px] text-[24px] leading-[30px]",
       lg: "md:text-[40px] md:leading-[50px] text-[32px] leading-[40px]",
+    },
+    useDefaultColor: {
+      true: "text-primary",
+      false: "",
     },
   },
   compoundVariants: [
@@ -65,6 +69,7 @@ const textHeadingVariants = cva("font-mackinac text-primary", {
   defaultVariants: {
     weight: "regular",
     size: "lg",
+    useDefaultColor: true,
   },
 });
 
@@ -79,12 +84,18 @@ export const TextHeading = ({
   as = "h2",
   weight,
   size,
+  useDefaultColor,
   className,
 }: TextHeadingProps) => {
   const Comp = as;
 
   return (
-    <Comp className={cn(textHeadingVariants({ weight, size }), className)}>
+    <Comp
+      className={cn(
+        textHeadingVariants({ weight, size, useDefaultColor }),
+        className
+      )}
+    >
       {children}
     </Comp>
   );

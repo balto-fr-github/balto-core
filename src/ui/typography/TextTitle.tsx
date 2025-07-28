@@ -2,17 +2,21 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "../../utils/cn";
 
-const textTitleVariants = cva("font-mackinac text-primary", {
+const textTitleVariants = cva("font-mackinac", {
   variants: {
     size: {
-      sm: "text-[14px] leading-[18px] md:text-[16px] md:leading-[24px]",
-      md: "text-[16px] leading-[20px] md:text-[18px] md:leading-[22px]",
+      sm: "text-[14px] leading-[18px] md:text-[16px] md:leading-[22px]",
+      md: "text-[16px] leading-[20px] md:text-[18px] md:leading-[24px]",
     },
     weight: {
       regular: "font-normal tracking-[0px]",
-      italic: "italic font-semibold tracking-[0.1px] md:tracking-[0.3px]",
+      italic: "italic font-bold tracking-[0.1px] md:tracking-[0.3px]",
       bold: "font-bold tracking-[0px] md:tracking-[-0.1px]",
       link: "underline font-bold decoration-neutral-70 tracking-[0px]",
+    },
+    useDefaultColor: {
+      true: "text-primary",
+      false: "",
     },
   },
   compoundVariants: [
@@ -32,6 +36,7 @@ const textTitleVariants = cva("font-mackinac text-primary", {
   defaultVariants: {
     size: "md",
     weight: "regular",
+    useDefaultColor: true,
   },
 });
 
@@ -46,6 +51,7 @@ export const TextTitle = ({
   as = "h4",
   size,
   weight,
+  useDefaultColor,
   className,
   children,
   ...props
@@ -54,7 +60,10 @@ export const TextTitle = ({
 
   return (
     <Comp
-      className={cn(textTitleVariants({ size, weight }), className)}
+      className={cn(
+        textTitleVariants({ size, weight, useDefaultColor }),
+        className
+      )}
       {...props}
     >
       {children}

@@ -61,7 +61,7 @@ const cardSecondaryTextVariants = cva("font-inter", {
   },
 });
 
-type SelectableCardProps = {
+type HorizontalCardProps = {
   icon?: React.ReactNode;
   mainText?: string;
   secondaryText?: string;
@@ -78,7 +78,7 @@ type SelectableCardProps = {
 } & VariantProps<typeof cardVariants> &
   React.ComponentPropsWithoutRef<"div">;
 
-export const SelectableCard = forwardRef<HTMLDivElement, SelectableCardProps>(
+export const HorizontalCard = forwardRef<HTMLDivElement, HorizontalCardProps>(
   (
     {
       icon,
@@ -162,4 +162,4 @@ export const SelectableCard = forwardRef<HTMLDivElement, SelectableCardProps>(
   }
 );
 
-SelectableCard.displayName = "SelectableCard";
+HorizontalCard.displayName = "HorizontalCard";
