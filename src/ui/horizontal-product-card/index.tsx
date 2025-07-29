@@ -1,1 +1,4 @@
-export { HorizontalProductCard } from "./HorizontalProductCard";
+export {
+  HorizontalProductCard,
+  type FlavorOption,
+} from "./HorizontalProductCard";

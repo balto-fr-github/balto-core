@@ -147,7 +147,7 @@ export const HorizontalCard = forwardRef<HTMLDivElement, HorizontalCardProps>(
               </p>
             )}
 
-            {subtext && subtext}
+            {subtext}
           </div>
         </div>
 

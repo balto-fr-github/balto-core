@@ -11,6 +11,7 @@ module.exports = {
         error: {
           default: "#DC2626",
           70: "#B91C1C",
+          5: "#FEF2F2",
         },
         "bright-blue": {
           default: "#0166F4",
@@ -58,6 +59,7 @@ module.exports = {
       },
       boxShadow: {
         "quantity-selector": "0px 1px 2px 0px rgba(16, 24, 40, 0.05)",
+        modal: "0 4px 25.8px rgba(51, 51, 51, 0.10)",
       },
     },
   },

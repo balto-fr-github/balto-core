@@ -2,7 +2,7 @@ import { forwardRef } from "react";
 
 import { cn } from "../../utils/cn";
 
-type FlavorOption = {
+export type FlavorOption = {
   label: string;
   value: string;
   icon?: React.ReactNode;

@@ -10,9 +10,15 @@ const textTitleVariants = cva("font-mackinac", {
     },
     weight: {
       regular: "font-normal tracking-[0px]",
-      italic: "italic font-bold tracking-[0.1px] md:tracking-[0.3px]",
       bold: "font-bold tracking-[0px] md:tracking-[-0.1px]",
-      link: "underline font-bold decoration-neutral-70 tracking-[0px]",
+    },
+    italic: {
+      true: "italic tracking-[0.1px] md:tracking-[0.3px]",
+      false: "",
+    },
+    isLink: {
+      true: "underline font-bold decoration-neutral-70 tracking-[0px]",
+      false: "",
     },
     useDefaultColor: {
       true: "text-primary",
@@ -22,20 +28,22 @@ const textTitleVariants = cva("font-mackinac", {
   compoundVariants: [
     {
       size: "md",
-      weight: "link",
-      className:
+      isLink: true,
+      class:
         "underline-offset-[1.28px] decoration-[0.96px] md:decoration-[1.08px] md:underline-offset-[1.44px]",
     },
     {
       size: "sm",
-      weight: "link",
-      className:
+      isLink: true,
+      class:
         "underline-offset-[1.12px] decoration-[0.84px] md:decoration-[0.96px] md:underline-offset-[1.28px]",
     },
   ],
   defaultVariants: {
     size: "md",
     weight: "regular",
+    italic: false,
+    isLink: false,
     useDefaultColor: true,
   },
 });
@@ -51,17 +59,19 @@ export const TextTitle = ({
   as = "h4",
   size,
   weight,
+  italic = false,
+  isLink = false,
   useDefaultColor,
   className,
   children,
   ...props
 }: TextTitleProps) => {
-  const Comp = as as any;
+  const Comp = as;
 
   return (
     <Comp
       className={cn(
-        textTitleVariants({ size, weight, useDefaultColor }),
+        textTitleVariants({ size, weight, italic, isLink, useDefaultColor }),
         className
       )}
       {...props}

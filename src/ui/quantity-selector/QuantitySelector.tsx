@@ -1,12 +1,10 @@
-import { useState } from "react";
-
 import { cn } from "../../utils/cn";
 
 interface QuantitySelectorProps {
-  initialValue?: number;
+  value: number;
   min?: number;
   max?: number;
-  onChange?: (value: number) => void;
+  onChange: (value: number) => void;
   className?: string;
 }
 
@@ -28,9 +26,9 @@ const PlusIcon = ({
     <path
       d="M7.99992 3.33334V12.6667M3.33325 8H12.6666"
       stroke={strokeColor}
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
@@ -53,41 +51,47 @@ const MinusIcon = ({
     <path
       d="M3.33325 8H12.6666"
       stroke={strokeColor}
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
     />
   </svg>
 );
 
 export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
-  initialValue = 1,
+  value,
   min = 1,
   max = 999,
   onChange,
   className,
 }) => {
-  const [quantity, setQuantity] = useState(initialValue);
-  const isMinusDisabled = quantity <= min;
-  const isPlusDisabled = quantity >= max;
+  const isMinusDisabled = value <= min;
+  const isPlusDisabled = value >= max;
 
   const handleDecrease = () => {
-    const newValue = Math.max(min, quantity - 1);
-    setQuantity(newValue);
-    onChange?.(newValue);
+    const newValue = Math.max(min, value - 1);
+    onChange(newValue);
   };
 
   const handleIncrease = () => {
-    const newValue = Math.min(max, quantity + 1);
-    setQuantity(newValue);
-    onChange?.(newValue);
+    const newValue = Math.min(max, value + 1);
+    onChange(newValue);
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value) || min;
-    const clampedValue = Math.max(min, Math.min(max, value));
-    setQuantity(clampedValue);
-    onChange?.(clampedValue);
+    const raw = parseInt(e.target.value);
+    if (!isNaN(raw)) {
+      const clamped = Math.max(min, Math.min(max, raw));
+      onChange(clamped);
+    }
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+    const raw = parseInt(e.target.value);
+    const clamped = Math.max(min, Math.min(max, isNaN(raw) ? min : raw));
+    if (clamped !== value) {
+      onChange(clamped);
+    }
   };
 
   return (
@@ -108,8 +112,10 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
 
       <input
         type="number"
-        value={quantity}
+        inputMode="numeric"
+        value={value}
         onChange={handleInputChange}
+        onBlur={handleBlur}
         min={min}
         max={max}
         className="text-center w-3.5 text-[14px] tracking-[0.3px] font-semibold font-inter border-none outline-none focus:ring-0 appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"

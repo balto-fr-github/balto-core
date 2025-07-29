@@ -28,6 +28,8 @@ export const Tabs: React.FC<TabsProps> = ({
   );
 
   const handleTabClick = (tabId: string) => {
+    if (tabId === activeTab) return;
+
     setActiveTab(tabId);
     onTabChange?.(tabId);
   };

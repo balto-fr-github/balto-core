@@ -14,10 +14,16 @@ const textBodyVariants = cva("font-inter", {
     },
     weight: {
       regular: "font-normal",
-      italic: "italic font-normal",
       medium: "font-medium",
-      link: "font-medium underline decoration-neutral-70",
       semibold: "font-semibold",
+    },
+    italic: {
+      true: "italic",
+      false: "",
+    },
+    isLink: {
+      true: "underline font-medium decoration-neutral-70",
+      false: "",
     },
     useDefaultColor: {
       true: "text-primary",
@@ -28,98 +34,96 @@ const textBodyVariants = cva("font-inter", {
     {
       size: "sm",
       weight: "regular",
-      className: "md:tracking-[0.2px]",
+      italic: false,
+      class: "md:tracking-[0.2px]",
     },
-    { size: "2xl", weight: "italic", className: "tracking-[0.3px]" },
+
+    { size: "2xl", italic: true, class: "tracking-[0.3px]" },
+    { size: "lg", italic: true, class: "tracking-[0.1px] md:tracking-[0.3px]" },
+    { size: "md", italic: true, class: "tracking-[0.1px] md:tracking-[0.3px]" },
+    { size: "sm", italic: true, class: "tracking-[0.1px] md:tracking-[0.5px]" },
+
     {
-      size: "lg",
-      weight: "italic",
-      className: "tracking-[0.1px] md:tracking-[0.3px]",
+      size: "sm",
+      isLink: true,
+      class:
+        "tracking-[0px] md:tracking-[0.2px] underline-offset-[0.96px] decoration-[0.72px] md:decoration-[0.84px] md:underline-offset-[1.12px]",
     },
     {
       size: "md",
-      weight: "italic",
-      className: "tracking-[0.1px] md:tracking-[0.3px]",
+      isLink: true,
+      class:
+        "tracking-[0px] decoration-[0.84px] underline-offset-[1.12px] md:decoration-[0.96px] md:underline-offset-[1.28px]",
     },
     {
-      size: "sm",
-      weight: "italic",
-      className: "tracking-[0.1px] md:tracking-[0.5px]",
-    },
-    {
-      size: "sm",
-      weight: "link",
-      className:
-        "md:tracking-[0.2px] underline-offset-[0.96px] md:underline-offset-[1.12px] decoration-[0.72px] md:decoration-[0.84px]",
+      size: "lg",
+      isLink: true,
+      class:
+        "tracking-[0px] decoration-[0.96px] underline-offset-[1.28px] md:decoration-[1.08px] md:underline-offset-[1.44px]",
     },
     {
       size: "2xl",
-      weight: "medium",
-      className: "tracking-[0.1px]",
+      isLink: true,
+      class:
+        "tracking-[0px] decoration-[1.44px] underline-offset-[1.92px] md:decoration-[1.8px] md:underline-offset-[2.4px]",
     },
+
+    { size: "2xl", weight: "medium", italic: false, class: "tracking-[0.1px]" },
     {
       size: "lg",
       weight: "medium",
-      className: "md:tracking-[0.1px]",
+      italic: false,
+      class: "md:tracking-[0.1px]",
     },
     {
       size: "md",
       weight: "medium",
-      className: "md:tracking-[0.1px]",
+      italic: false,
+      class: "md:tracking-[0.1px]",
     },
     {
       size: "sm",
       weight: "medium",
-      className: "tracking-[0.1px] md:tracking-[0.3px]",
+      italic: false,
+      class: "tracking-[0.1px] md:tracking-[0.3px]",
     },
+
     {
       size: "2xl",
       weight: "semibold",
-      className: "tracking-[0.1px]",
+      italic: false,
+      class: "tracking-[0.1px]",
     },
     {
       size: "lg",
       weight: "semibold",
-      className: "md:tracking-[0.1px]",
+      italic: false,
+      class: "md:tracking-[0.1px]",
     },
     {
       size: "md",
       weight: "semibold",
-      className: "tracking-[0.1px]",
+      italic: false,
+      class: "tracking-[0.1px]",
     },
     {
       size: "sm",
       weight: "semibold",
-      className: "tracking-[0.1px] md:tracking-[0.3px]",
-    },
-    {
-      size: "md",
-      weight: "link",
-      className:
-        "decoration-[0.84px] underline-offset-[1.12px] md:decoration-[0.96px] md:underline-offset-[1.28px]",
-    },
-    {
-      size: "lg",
-      weight: "link",
-      className:
-        "decoration-[0.96px] underline-offset-[1.28px] md:decoration-[1.08px] md:underline-offset-[1.44px]",
-    },
-    {
-      size: "2xl",
-      weight: "link",
-      className:
-        "decoration-[1.44px] underline-offset-[1.92px] md:decoration-[1.8px] md:underline-offset-[2.4px]",
+      italic: false,
+      class: "tracking-[0.1px] md:tracking-[0.3px]",
     },
   ],
   defaultVariants: {
     size: "md",
     weight: "regular",
+    italic: false,
+    isLink: false,
     useDefaultColor: true,
   },
 });
 
 export interface TextBodyProps extends VariantProps<typeof textBodyVariants> {
-  as?: keyof JSX.IntrinsicElements;
+  as?: ElementType;
   className?: string;
   children?: React.ReactNode;
   [key: string]: any;
@@ -129,6 +133,8 @@ export const TextBody = ({
   as = "p",
   size,
   weight,
+  italic = false,
+  isLink = false,
   useDefaultColor,
   className,
   children,
@@ -139,7 +145,7 @@ export const TextBody = ({
   return (
     <Comp
       className={cn(
-        textBodyVariants({ size, weight, useDefaultColor }),
+        textBodyVariants({ size, weight, italic, isLink, useDefaultColor }),
         className
       )}
       {...props}

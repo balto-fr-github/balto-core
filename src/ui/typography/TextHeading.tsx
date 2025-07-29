@@ -6,11 +6,14 @@ const textHeadingVariants = cva("font-mackinac", {
   variants: {
     weight: {
       regular: "font-normal",
-      italic: "italic font-bold",
       bold: "font-bold",
     },
+    italic: {
+      true: "italic",
+      false: "",
+    },
     size: {
-      sm: "md:text-[24px] md:leading-[30px] text-[20px] leading-[26px] ",
+      sm: "md:text-[24px] md:leading-[30px] text-[20px] leading-[26px]",
       md: "md:text-[30px] md:leading-[38px] text-[24px] leading-[30px]",
       lg: "md:text-[40px] md:leading-[50px] text-[32px] leading-[40px]",
     },
@@ -23,52 +26,60 @@ const textHeadingVariants = cva("font-mackinac", {
     {
       size: "sm",
       weight: "regular",
-      className: "tracking-[0.1px] md:tracking-[0.2px]",
+      italic: false,
+      class: "tracking-[0.1px] md:tracking-[0.2px]",
     },
     {
       size: "sm",
-      weight: "italic",
-      className: "tracking-[0.2px]",
+      italic: true,
+      class: "tracking-[0.2px]",
     },
     {
       size: "sm",
       weight: "bold",
-      className: "tracking-[0.1px] md:tracking-[0.4px]",
+      italic: false,
+      class: "tracking-[0.1px] md:tracking-[0.4px]",
     },
     {
       size: "md",
       weight: "regular",
-      className: "tracking-[0px]",
+      italic: false,
+      class: "tracking-[0px]",
     },
     {
       size: "md",
-      weight: "italic",
-      className: "tracking-[0.1px]",
+      italic: true,
+      class: "tracking-[0.1px]",
     },
     {
       size: "md",
       weight: "bold",
-      className: "tracking-[0px] md:tracking-[0.2px]",
+      italic: false,
+      class: "tracking-[0px] md:tracking-[0.2px]",
     },
+
     {
       size: "lg",
       weight: "regular",
-      className: "tracking-[0px]",
+      italic: false,
+      class: "tracking-[0px]",
     },
     {
       size: "lg",
-      weight: "italic",
-      className: "tracking-[0.1px]",
+      italic: true,
+      class: "tracking-[0.1px]",
     },
     {
       size: "lg",
       weight: "bold",
-      className: "tracking-[0px] md:tracking-[0.2px]",
+      italic: false,
+      class: "tracking-[0px] md:tracking-[0.2px]",
     },
   ],
   defaultVariants: {
     weight: "regular",
     size: "lg",
+    italic: false,
     useDefaultColor: true,
   },
 });
@@ -86,13 +97,14 @@ export const TextHeading = ({
   size,
   useDefaultColor,
   className,
+  italic = false,
 }: TextHeadingProps) => {
   const Comp = as;
 
   return (
     <Comp
       className={cn(
-        textHeadingVariants({ weight, size, useDefaultColor }),
+        textHeadingVariants({ weight, size, useDefaultColor, italic }),
         className
       )}
     >

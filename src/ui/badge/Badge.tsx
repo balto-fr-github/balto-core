@@ -3,7 +3,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "../../utils/cn";
 
-const badgeVariants = cva(
+export const badgeVariants = cva(
   "inline-flex items-center font-semibold rounded-[99px] transition-colors font-mackinac",
   {
     variants: {
@@ -27,37 +27,37 @@ const badgeVariants = cva(
       {
         variant: "bg-fill",
         color: "blue",
-        className: "bg-info-20 text-primary",
+        class: "bg-info-20 text-primary",
       },
       {
         variant: "bg-fill",
         color: "orange",
-        className: "bg-warning-40 text-primary",
+        class: "bg-warning-40 text-primary",
       },
       {
         variant: "bg-fill",
         color: "green",
-        className: "bg-success-40 text-primary",
+        class: "bg-success-40 text-primary",
       },
       {
         variant: "bg-outline",
         color: "blue",
-        className: "bg-info-10 text-info-50 border-info-50",
+        class: "bg-info-10 text-info-50 border-info-50",
       },
       {
         variant: "bg-outline",
         color: "orange",
-        className: "bg-warning-10 text-warning-50 border-warning-50",
+        class: "bg-warning-10 text-warning-50 border-warning-50",
       },
       {
         variant: "bg-outline",
         color: "green",
-        className: "bg-success-10 text-success-50 border-success-50",
+        class: "bg-success-10 text-success-50 border-success-50",
       },
       {
         variant: "bg-outline",
         color: "white",
-        className: "bg-white text-primary",
+        class: "bg-white text-primary",
       },
     ],
     defaultVariants: {

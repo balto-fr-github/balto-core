@@ -15,16 +15,21 @@ const toggleVariants = cva(
         true: "bg-gray-200 cursor-not-allowed",
         false: "bg-black cursor-pointer",
       },
+      checked: {
+        true: "bg-neutral-90",
+        false: "bg-neutral-10",
+      },
     },
     compoundVariants: [
       {
         disabled: false,
-        className: "hover:bg-neutral-700",
+        class: "hover:bg-neutral-700",
       },
     ],
     defaultVariants: {
       size: "large",
       disabled: false,
+      checked: false,
     },
   }
 );
@@ -57,11 +62,7 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
         aria-checked={checked}
         disabled={disabled}
         onClick={() => !disabled && onChange(!checked)}
-        className={cn(
-          toggleVariants({ size, disabled: String(disabled) as any }),
-          checked ? "bg-neutral-90" : "bg-neutral-10",
-          className
-        )}
+        className={cn(toggleVariants({ size, disabled, checked }), className)}
         {...props}
       >
         <span

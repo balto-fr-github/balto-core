@@ -1,4 +1,5 @@
 import { cva, type VariantProps } from "class-variance-authority";
+import type { ReactNode } from "react";
 
 import { cn } from "../../utils/cn";
 
@@ -7,25 +8,29 @@ const topBarVariants = cva(
   {
     variants: {
       variant: {
-        lp: "px-[90px] py-5",
-        cp: "px-4 md:px-[66px] py-4 md:py-5",
+        landingPage: "px-[90px] py-5",
+        customerPortal: "px-4 md:px-[66px] py-4 md:py-5",
       },
     },
     defaultVariants: {
-      variant: "lp",
+      variant: "landingPage",
     },
   }
 );
 
 export interface TopBarProps extends VariantProps<typeof topBarVariants> {
-  logo?: React.ReactNode;
-  title?: string;
-  description?: string;
+  as?: keyof JSX.IntrinsicElements;
+  logo?: ReactNode;
   className?: string;
 }
 
-export const TopBar = ({ variant, logo, className }: TopBarProps) => {
+export const TopBar = ({
+  as: Tag = "div",
+  variant,
+  logo,
+  className,
+}: TopBarProps) => {
   return (
-    <div className={cn(topBarVariants({ variant }), className)}>{logo}</div>
+    <Tag className={cn(topBarVariants({ variant }), className)}>{logo}</Tag>
   );
 };

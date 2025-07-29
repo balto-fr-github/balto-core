@@ -6,16 +6,20 @@ const displayHeadingVariants = cva("font-mackinac text-primary", {
   variants: {
     weight: {
       regular: "font-normal tracking-[0px]",
-      italic: "italic font-bold tracking-[0.2px] md:tracking-[0.4px]",
       bold: "font-bold tracking-[0px] md:tracking-[0.2px]",
     },
     size: {
       xl: "md:text-[60px] md:leading-[72px] text-[40px] leading-[50px]",
     },
+    italic: {
+      true: "italic tracking-[0.2px] md:tracking-[0.4px]",
+      false: "",
+    },
   },
   defaultVariants: {
     weight: "regular",
     size: "xl",
+    italic: false,
   },
 });
 
@@ -31,11 +35,17 @@ export const DisplayHeading = ({
   weight,
   size,
   className,
+  italic = false,
 }: Props) => {
   const Comp = as;
 
   return (
-    <Comp className={cn(displayHeadingVariants({ weight, size }), className)}>
+    <Comp
+      className={cn(
+        displayHeadingVariants({ weight, size, italic }),
+        className
+      )}
+    >
       {children}
     </Comp>
   );

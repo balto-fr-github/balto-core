@@ -1,30 +1,34 @@
 import { cn } from "../../utils/cn";
 
-type TitleBlockProps = {
+type Props = {
   title: string;
   description: string;
+  as?: keyof JSX.IntrinsicElements;
   containerClassName?: string;
   titleClassName?: string;
   descriptionClassName?: string;
 };
 
-export const TitleBlock: React.FC<TitleBlockProps> = ({
+export const TitleBlock = ({
   title,
   description,
+  as = "h2",
   containerClassName,
   titleClassName,
   descriptionClassName,
-}) => {
+}: Props) => {
+  const TitleTag = as;
+
   return (
     <div className={cn("md:space-y-2 space-y-1", containerClassName)}>
-      <h2
+      <TitleTag
         className={cn(
           "text-primary font-mackinac text-[24px] md:text-[30px] leading-[30px] md:leading-[38px] font-bold md:tracking-[0.2px]",
           titleClassName
         )}
       >
         {title}
-      </h2>
+      </TitleTag>
 
       <p
         className={cn(

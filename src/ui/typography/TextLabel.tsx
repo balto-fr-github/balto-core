@@ -2,8 +2,6 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "../../utils/cn";
 
-type ElementType = keyof JSX.IntrinsicElements;
-
 const textLabelVariants = cva("font-mackinac leading-[100%]", {
   variants: {
     size: {
@@ -12,10 +10,20 @@ const textLabelVariants = cva("font-mackinac leading-[100%]", {
     },
     weight: {
       regular: "font-normal",
-      italic: "italic font-bold",
       medium: "font-medium",
-      link: "underline font-bold decoration-neutral-70",
-      uppercase: "uppercase font-normal",
+      bold: "font-bold",
+    },
+    italic: {
+      true: "italic",
+      false: "",
+    },
+    isLink: {
+      true: "underline font-bold decoration-neutral-70",
+      false: "",
+    },
+    isUppercase: {
+      true: "uppercase",
+      false: "",
     },
     useDefaultColor: {
       true: "text-primary",
@@ -25,47 +33,58 @@ const textLabelVariants = cva("font-mackinac leading-[100%]", {
   defaultVariants: {
     size: "md",
     weight: "regular",
+    italic: false,
+    isLink: false,
+    isUppercase: false,
     useDefaultColor: true,
   },
   compoundVariants: [
-    { size: "md", weight: "regular", class: "md:tracking-[0.2px]" },
     {
       size: "md",
-      weight: "italic",
-      class: "tracking-[0.2px] md:tracking-[0.4px]",
+      weight: "regular",
+      italic: false,
+      class: "md:tracking-[0.2px]",
     },
-    { size: "md", weight: "medium", class: "md:tracking-[0.2px]" },
-    {
-      size: "md",
-      weight: "link",
-      class:
-        "md:tracking-[0.2px] underline-offset-[0.8px] decoration-[0.6px] md:decoration-[0.72px] md:underline-offset-[0.96px]",
-    },
-    { size: "md", weight: "uppercase", class: "md:tracking-[0.2px]" },
     {
       size: "lg",
       weight: "regular",
+      italic: false,
       class: "tracking-[0.2px] md:tracking-[0.4px]",
     },
+
+    { size: "md", italic: true, class: "tracking-[0.2px] md:tracking-[0.4px]" },
+    { size: "lg", italic: true, class: "tracking-[0.4px] md:tracking-[0.6px]" },
+
     {
-      size: "lg",
-      weight: "italic",
-      class: "tracking-[0.4px] md:tracking-[0.6px]",
+      size: "md",
+      weight: "medium",
+      italic: false,
+      class: "md:tracking-[0.2px]",
     },
     {
       size: "lg",
       weight: "medium",
+      italic: false,
       class: "tracking-[0.2px] md:tracking-[0.4px]",
+    },
+
+    {
+      size: "md",
+      isLink: true,
+      class:
+        "md:tracking-[0.2px] underline-offset-[0.8px] decoration-[0.6px] md:decoration-[0.72px] md:underline-offset-[0.96px]",
     },
     {
       size: "lg",
-      weight: "link",
+      isLink: true,
       class:
         "tracking-[0.2px] md:tracking-[0.4px] underline-offset-[0.96px] md:underline-offset-[1.12px] decoration-[0.72px] md:decoration-[0.84px]",
     },
+
+    { size: "md", isUppercase: true, class: "md:tracking-[0.2px]" },
     {
       size: "lg",
-      weight: "uppercase",
+      isUppercase: true,
       class: "tracking-[0.2px] md:tracking-[0.4px]",
     },
   ],
@@ -82,6 +101,9 @@ export const TextLabel = ({
   as = "label",
   size,
   weight,
+  italic = false,
+  isLink = false,
+  isUppercase = false,
   useDefaultColor,
   className,
   children,
@@ -92,7 +114,14 @@ export const TextLabel = ({
   return (
     <Comp
       className={cn(
-        textLabelVariants({ size, weight, useDefaultColor }),
+        textLabelVariants({
+          size,
+          weight,
+          italic,
+          isLink,
+          isUppercase,
+          useDefaultColor,
+        }),
         className
       )}
       {...props}

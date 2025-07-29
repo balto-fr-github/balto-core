@@ -18,7 +18,8 @@ export const Tab: React.FC<TabProps> = ({
   const isTrulyActive = isActive && !disabled;
 
   return (
-    <div
+    <button
+      type="button"
       className={cn(
         "px-4 py-[7px] rounded-lg text-[16px] leading-[23px] text-center",
         disabled
@@ -28,8 +29,9 @@ export const Tab: React.FC<TabProps> = ({
         className
       )}
       onClick={disabled ? undefined : onClick}
+      disabled={disabled}
     >
       {label}
-    </div>
+    </button>
   );
 };

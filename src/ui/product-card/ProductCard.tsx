@@ -35,7 +35,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({
   buttonClassName,
 }) => {
   return (
-    <div className={(cn("w-full rounded-lg font-inter"), containerClassName)}>
+    <div className={cn("w-full rounded-lg font-inter", containerClassName)}>
       {productImage}
 
       <div className={cn("p-3 space-y-3 bg-white", contentClassName)}>
