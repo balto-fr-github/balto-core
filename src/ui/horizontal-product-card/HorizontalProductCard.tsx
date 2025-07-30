@@ -1,11 +1,29 @@
 import { forwardRef } from "react";
 
 import { cn } from "../../utils/cn";
+import Flavor from "./Flavor";
+import { SalmonIcon } from "./SalmonIcon";
+import { ChickenIcon } from "./ChickenIcon";
 
 export type FlavorOption = {
   label: string;
   value: string;
   icon?: React.ReactNode;
+};
+
+export type PredefinedFlavorType = "chicken" | "salmon";
+
+const PREDEFINED_FLAVORS: Record<PredefinedFlavorType, FlavorOption> = {
+  salmon: {
+    label: "Saumon",
+    value: "salmon",
+    icon: <SalmonIcon />,
+  },
+  chicken: {
+    label: "Poulet",
+    value: "chicken",
+    icon: <ChickenIcon />,
+  },
 };
 
 type HorizontalProductCardProps = {
@@ -17,10 +35,9 @@ type HorizontalProductCardProps = {
   originalPrice?: string;
   currentPrice: string;
   showFlavorSelector?: boolean;
-  flavors?: [FlavorOption, FlavorOption];
-  selectedFlavor?: string;
-  onFlavorSelect?: (value: string) => void;
-  flavorStyle?: {
+  selectedFlavor?: PredefinedFlavorType;
+  onFlavorSelect?: (value: PredefinedFlavorType) => void;
+  activeFlavorStyle: {
     borderColor: string;
     bgColor: string;
   };
@@ -41,16 +58,18 @@ export const HorizontalProductCard = forwardRef<
       originalPrice,
       currentPrice,
       showFlavorSelector = false,
-      flavors,
       selectedFlavor,
       onFlavorSelect,
-      flavorStyle,
+      activeFlavorStyle,
       className,
     },
     ref
   ) => {
+    const salmonFlavor = PREDEFINED_FLAVORS.salmon;
+    const chickenFlavor = PREDEFINED_FLAVORS.chicken;
+
     return (
-      <div ref={ref} className={cn("flex flex-col gap-3", className)}>
+      <div ref={ref} className={cn("flex flex-col gap-2", className)}>
         <div className="flex items-stretch gap-3">
           {productImage}
 
@@ -87,28 +106,41 @@ export const HorizontalProductCard = forwardRef<
           </div>
         </div>
 
-        {showFlavorSelector && flavors?.length === 2 && (
-          <div className="flex gap-2">
-            {flavors.map((flavor) => {
-              const isSelected = flavor.value === selectedFlavor;
-              return (
-                <button
-                  key={flavor.value}
-                  type="button"
-                  onClick={() => onFlavorSelect?.(flavor.value)}
-                  className={cn(
-                    "flex items-center gap-1 px-4 py-2 rounded-md border w-full justify-center text-sm font-medium",
-                    isSelected ? "text-primary font-semibold" : "text-light",
-                    isSelected && flavorStyle?.borderColor,
-                    isSelected && flavorStyle?.bgColor,
-                    !isSelected && "border-gray-300"
-                  )}
-                >
-                  {flavor.icon}
-                  {flavor.label}
-                </button>
-              );
-            })}
+        {showFlavorSelector && (
+          <div className="flex items-center">
+            <Flavor
+              label={chickenFlavor.label}
+              icon={
+                <ChickenIcon
+                  color={
+                    selectedFlavor === "chicken"
+                      ? activeFlavorStyle.borderColor
+                      : "#777777"
+                  }
+                />
+              }
+              isActive={selectedFlavor === "chicken"}
+              onClick={() => onFlavorSelect?.("chicken")}
+              position="left"
+              activeStyle={activeFlavorStyle}
+            />
+
+            <Flavor
+              label={salmonFlavor.label}
+              icon={
+                <SalmonIcon
+                  color={
+                    selectedFlavor === "salmon"
+                      ? activeFlavorStyle.borderColor
+                      : "#777777"
+                  }
+                />
+              }
+              isActive={selectedFlavor === "salmon"}
+              onClick={() => onFlavorSelect?.("salmon")}
+              position="right"
+              activeStyle={activeFlavorStyle}
+            />
           </div>
         )}
       </div>
