@@ -10,10 +10,12 @@ import { cn } from "../../utils/cn";
 import { LoadingSpinner, LoadingSpinnerProps } from "../loading-spinner";
 import { TextBody } from "../typography/TextBody";
 import { TextCaption } from "../typography/TextCaption";
+import { LeftArrowIcon } from "./LeftArrowIcon";
+import { RightArrowIcon } from "./RightArrowIcon";
 
 export const buttonVariants = cva(
   [
-    "inline-flex items-center justify-center rounded-lg transition-colors",
+    "flex items-center gap-1 justify-center rounded-lg transition-colors",
     "focus-visible:ring-2 focus:outline-none focus:ring-bright-blue-10",
     "disabled:cursor-not-allowed",
   ],
@@ -127,6 +129,9 @@ export interface ButtonProps
     className?: string;
   };
   children: React.ReactNode;
+  textContainerClassName?: string;
+  withLeftArrow?: boolean;
+  withRightArrow?: boolean;
 }
 
 export const Button: ForwardRefExoticComponent<
@@ -141,6 +146,9 @@ export const Button: ForwardRefExoticComponent<
       className,
       spinnerProps,
       children,
+      textContainerClassName,
+      withLeftArrow,
+      withRightArrow,
       ...props
     },
     ref
@@ -155,7 +163,8 @@ export const Button: ForwardRefExoticComponent<
               size="md"
               weight="medium"
               useDefaultColor={false}
-              as="span"
+              as="div"
+              textContainerClassName={textContainerClassName}
             >
               {children}
             </TextBody>
@@ -166,7 +175,8 @@ export const Button: ForwardRefExoticComponent<
               size="sm"
               weight="medium"
               useDefaultColor={false}
-              as="span"
+              as="div"
+              textContainerClassName={textContainerClassName}
             >
               {children}
             </TextBody>
@@ -178,7 +188,8 @@ export const Button: ForwardRefExoticComponent<
               weight="semibold"
               isLink={true}
               useDefaultColor={false}
-              as="span"
+              as="div"
+              textContainerClassName={textContainerClassName}
             >
               {children}
             </TextCaption>
@@ -189,7 +200,8 @@ export const Button: ForwardRefExoticComponent<
               size="sm"
               weight="medium"
               useDefaultColor={false}
-              as="span"
+              as="div"
+              textContainerClassName={textContainerClassName}
             >
               {children}
             </TextBody>
@@ -212,7 +224,11 @@ export const Button: ForwardRefExoticComponent<
           />
         )}
 
+        {withLeftArrow && !loading && <LeftArrowIcon />}
+
         {renderText()}
+
+        {withRightArrow && !loading && <RightArrowIcon />}
       </button>
     );
   }
