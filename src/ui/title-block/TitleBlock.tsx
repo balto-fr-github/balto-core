@@ -1,6 +1,8 @@
 import { cn } from "../../utils/cn";
+import { TextBody } from "../typography";
+import { TextHeading } from "../typography/TextHeading";
 
-type Props = {
+export type TitleBlockProps = {
   title: string;
   description: string;
   as?: keyof JSX.IntrinsicElements;
@@ -12,32 +14,24 @@ type Props = {
 export const TitleBlock = ({
   title,
   description,
-  as = "h2",
   containerClassName,
   titleClassName,
   descriptionClassName,
-}: Props) => {
-  const TitleTag = as;
-
+}: TitleBlockProps) => {
   return (
     <div className={cn("md:space-y-2 space-y-1", containerClassName)}>
-      <TitleTag
-        className={cn(
-          "text-primary font-mackinac text-[24px] md:text-[30px] leading-[30px] md:leading-[38px] font-bold md:tracking-[0.2px]",
-          titleClassName
-        )}
-      >
+      <TextHeading className={titleClassName} weight="bold" size="md">
         {title}
-      </TitleTag>
+      </TextHeading>
 
-      <p
-        className={cn(
-          "text-light text-[16px] md:text-[18px] leading-[22px] md:leading-[24px]",
-          descriptionClassName
-        )}
+      <TextBody
+        weight="regular"
+        size="lg"
+        className={cn("text-light", descriptionClassName)}
+        useDefaultColor={false}
       >
         {description}
-      </p>
+      </TextBody>
     </div>
   );
 };

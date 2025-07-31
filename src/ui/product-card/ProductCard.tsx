@@ -1,7 +1,8 @@
 import { cn } from "../../utils/cn";
 import { Button } from "../button";
+import { TextBody } from "../typography";
 
-type ProductCardProps = {
+export type ProductCardProps = {
   productImage: React.ReactNode;
   productName: string;
   productDescription: string;
@@ -38,45 +39,54 @@ export const ProductCard: React.FC<ProductCardProps> = ({
     <div className={cn("w-full rounded-lg font-inter", containerClassName)}>
       {productImage}
 
-      <div className={cn("p-3 space-y-3 bg-white", contentClassName)}>
+      <div
+        className={cn(
+          "p-3 space-y-3 bg-white border border-core-neutral-grey-300",
+          contentClassName
+        )}
+      >
         <div>
-          <h3
-            className={cn(
-              "text-core-neutral-grey-800 text-[18px] leading-[23px] font-semibold tracking-[0.1px]",
-              productNameClassName
-            )}
+          <TextBody
+            weight="semibold"
+            size="lg"
+            className={cn("text-core-neutral-grey-800", productNameClassName)}
+            as="h3"
+            useDefaultColor={false}
           >
             {productName}
-          </h3>
+          </TextBody>
 
-          <p
+          <TextBody
+            weight={"regular"}
+            size="sm"
+            useDefaultColor={false}
             className={cn(
-              "text-core-neutral-grey-600 text-[14px] leading-[22px] tracking-[0.2px]",
+              "text-core-neutral-grey-600",
               productDescriptionClassName
             )}
           >
             {productDescription}
-          </p>
+          </TextBody>
         </div>
 
         <div className="flex items-center gap-1">
-          <p
-            className={cn(
-              "text-core-neutral-grey-500 text-[14px] leading-[22px] tracking-[0.2px]",
-              priceLabelClassName
-            )}
+          <TextBody
+            weight="regular"
+            size="sm"
+            useDefaultColor={false}
+            className={cn("text-core-neutral-grey-500", priceLabelClassName)}
           >
             {priceLabel}
-          </p>
+          </TextBody>
 
-          <p
-            className={cn(
-              "text-core-neutral-grey-800 text-[14px] leading-[22px] tracking-[0.2px] font-semibold",
-              productPriceClassName
-            )}
+          <TextBody
+            weight="semibold"
+            size="sm"
+            useDefaultColor={false}
+            className={cn("text-core-neutral-grey-800", productPriceClassName)}
           >
             {productPrice}
-          </p>
+          </TextBody>
         </div>
 
         <Button

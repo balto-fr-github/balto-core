@@ -2,7 +2,7 @@ import { cva, VariantProps } from "class-variance-authority";
 
 import { cn } from "../../utils/cn";
 
-const textHeadingVariants = cva("font-mackinac", {
+export const textHeadingVariants = cva("font-mackinac", {
   variants: {
     weight: {
       regular: "font-normal",
@@ -84,7 +84,7 @@ const textHeadingVariants = cva("font-mackinac", {
   },
 });
 
-type TextHeadingProps = {
+export type TextHeadingProps = {
   children: React.ReactNode;
   as?: keyof JSX.IntrinsicElements;
   className?: string;

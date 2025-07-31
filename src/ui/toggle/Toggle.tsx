@@ -3,13 +3,13 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "../../utils/cn";
 
-const toggleVariants = cva(
+export const toggleVariants = cva(
   "inline-flex items-center rounded-full transition-all duration-200",
   {
     variants: {
       size: {
-        small: "w-[40px] h-[20px] p-[2px]",
-        large: "w-[44px] h-[24px] p-[2px]",
+        sm: "w-[40px] h-[20px] p-[2px]",
+        lg: "w-[44px] h-[24px] p-[2px]",
       },
       disabled: {
         true: "bg-gray-200 cursor-not-allowed",
@@ -27,14 +27,14 @@ const toggleVariants = cva(
       },
     ],
     defaultVariants: {
-      size: "large",
+      size: "lg",
       disabled: false,
       checked: false,
     },
   }
 );
 
-type ToggleProps = {
+export type ToggleProps = {
   checked: boolean;
   onChange:
     | ((checked: boolean) => void)
@@ -45,14 +45,7 @@ type ToggleProps = {
 
 export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
   (
-    {
-      checked,
-      onChange,
-      disabled = false,
-      size = "large",
-      className,
-      ...props
-    },
+    { checked, onChange, disabled = false, size = "lg", className, ...props },
     ref
   ) => {
     return (
@@ -69,7 +62,7 @@ export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
           className={cn(
             "bg-white rounded-full transition-all duration-200",
             checked ? "translate-x-5" : "translate-x-0",
-            size === "small" ? "w-4 h-4" : "w-5 h-5"
+            size === "sm" ? "w-4 h-4" : "w-5 h-5"
           )}
         />
       </button>

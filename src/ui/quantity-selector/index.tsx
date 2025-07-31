@@ -1,1 +1,4 @@
-export { QuantitySelector } from "./QuantitySelector";
+export {
+  QuantitySelector,
+  type QuantitySelectorProps,
+} from "./QuantitySelector";

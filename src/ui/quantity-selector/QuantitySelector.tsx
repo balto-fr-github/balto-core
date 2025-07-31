@@ -1,6 +1,7 @@
 import { cn } from "../../utils/cn";
+import { TextBody } from "../typography";
 
-interface QuantitySelectorProps {
+export interface QuantitySelectorProps {
   value: number;
   min?: number;
   max?: number;
@@ -110,7 +111,8 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
         <MinusIcon strokeColor={isMinusDisabled ? "#ABABAB" : "#272727"} />
       </button>
 
-      <input
+      <TextBody
+        as="input"
         type="number"
         inputMode="numeric"
         value={value}
@@ -118,7 +120,9 @@ export const QuantitySelector: React.FC<QuantitySelectorProps> = ({
         onBlur={handleBlur}
         min={min}
         max={max}
-        className="text-center w-3.5 text-[14px] tracking-[0.3px] font-semibold font-inter border-none outline-none focus:ring-0 appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+        size="sm"
+        weight="semibold"
+        className="text-center w-3.5 border-none outline-none focus:ring-0 appearance-none [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
         aria-label="Quantity"
       />
 

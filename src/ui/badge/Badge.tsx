@@ -2,15 +2,17 @@ import { forwardRef } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "../../utils/cn";
+import { TextLabel } from "../typography/TextLabel";
+import { TextHeading } from "../typography/TextHeading";
 
 export const badgeVariants = cva(
-  "inline-flex items-center font-semibold rounded-[99px] transition-colors font-mackinac",
+  "inline-flex items-center rounded-[99px] transition-colors font-mackinac py-1",
   {
     variants: {
       size: {
-        small: "px-2 py-1 text-[12px] leading-[12px] font-medium",
-        medium: "px-2 py-1 text-[14px] leading-[14px] font-medium",
-        large: "px-4 py-1 ",
+        sm: "px-2",
+        md: "px-2",
+        lg: "px-4",
       },
       variant: {
         "bg-fill": "",
@@ -61,7 +63,7 @@ export const badgeVariants = cva(
       },
     ],
     defaultVariants: {
-      size: "medium",
+      size: "md",
       variant: "bg-fill",
       color: "blue",
     },
@@ -71,20 +73,95 @@ export const badgeVariants = cva(
 export type BadgeProps = {
   children: React.ReactNode;
   icon?: React.ReactNode;
-  className?: string;
+  containerClassName?: string;
+  textClassName?: string;
+  italic?: boolean;
 } & VariantProps<typeof badgeVariants> &
   React.ComponentPropsWithoutRef<"span">;
 
 export const Badge = forwardRef<HTMLSpanElement, BadgeProps>(
-  ({ children, icon, size, variant, color, className, ...props }, ref) => {
+  (
+    {
+      children,
+      icon,
+      size,
+      variant,
+      color,
+      containerClassName,
+      textClassName,
+      italic = false,
+      ...props
+    },
+    ref
+  ) => {
+    const renderText = () => {
+      switch (size) {
+        case "sm":
+          return (
+            <TextLabel
+              weight="bold"
+              size="md"
+              italic={italic}
+              useDefaultColor={false}
+              as="span"
+              className={textClassName}
+            >
+              {children}
+            </TextLabel>
+          );
+        case "md":
+          return (
+            <TextLabel
+              weight="medium"
+              size="lg"
+              italic={italic}
+              useDefaultColor={false}
+              as="span"
+              className={textClassName}
+            >
+              {children}
+            </TextLabel>
+          );
+        case "lg":
+          return (
+            <TextHeading
+              size="sm"
+              weight="bold"
+              italic={true}
+              useDefaultColor={false}
+              as="span"
+              className={textClassName}
+            >
+              {children}
+            </TextHeading>
+          );
+        default:
+          return (
+            <TextLabel
+              weight="medium"
+              size="lg"
+              italic={italic}
+              useDefaultColor={false}
+              as="span"
+              className={textClassName}
+            >
+              {children}
+            </TextLabel>
+          );
+      }
+    };
+
     return (
       <span
         ref={ref}
-        className={cn(badgeVariants({ size, variant, color }), className)}
+        className={cn(
+          badgeVariants({ size, variant, color }),
+          containerClassName
+        )}
         {...props}
       >
-        {children}
-        {icon && icon}
+        {renderText()}
+        {icon}
       </span>
     );
   }

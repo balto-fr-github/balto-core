@@ -1,1 +1,1 @@
-export { TitleBlock } from "./TitleBlock";
+export { TitleBlock, type TitleBlockProps } from "./TitleBlock";

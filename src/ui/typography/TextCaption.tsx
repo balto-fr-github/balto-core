@@ -2,7 +2,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "../../utils/cn";
 
-const textCaptionVariants = cva("font-inter", {
+export const textCaptionVariants = cva("font-inter", {
   variants: {
     size: {
       md: "text-[12px] leading-[12px] md:text-[12px] md:leading-[14px]",

@@ -2,14 +2,21 @@ import { forwardRef } from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "../../utils/cn";
+import { TextLabel, TextBody, TextCaption } from "../typography";
 
 const DefaultBadge = () => (
-  <span className="px-2 py-1 rounded-[99px] text-primary bg-warning-40 text-[10px] leading-[12px] font-medium tracking-[0.2px] md:text-[12px] md:tracking-[0.4px] font-mackinac italic">
+  <TextLabel
+    weight="bold"
+    size="md"
+    italic
+    as="span"
+    className="px-2 py-1 rounded-[99px] bg-warning-40"
+  >
     Default
-  </span>
+  </TextLabel>
 );
 
-const cardVariants = cva(
+export const cardVariants = cva(
   "flex justify-between p-3 rounded-lg border transition-colors duration-200 gap-2 bg-neutral-00 border-neutral-10",
   {
     variants: {
@@ -31,37 +38,7 @@ const cardVariants = cva(
   }
 );
 
-const cardMainTextVariants = cva("font-inter", {
-  variants: {
-    variant: {
-      default:
-        "text-[12px] text-light leading-[12px] md:leading-[18px] tracking-[0.2px] md:tracking-[0.6px]",
-      inverted:
-        "text-primary text-[14px] leading-[21px] font-medium md:text-[16px] md:leading-[23px] md:tracking-[0.1px]",
-      payment:
-        "text-primary text-[14px] leading-[21px] font-medium md:text-[16px] md:leading-[23px] md:tracking-[0.1px]",
-      address:
-        "text-primary text-[12px] leading-[14px] font-medium tracking-[0.1px] md:text-[16px] md:leading-[23px]",
-    },
-  },
-});
-
-const cardSecondaryTextVariants = cva("font-inter", {
-  variants: {
-    variant: {
-      default:
-        "text-primary text-[14px] leading-[21px] font-medium md:text-[16px] md:leading-[23px] md:tracking-[0.1px]",
-      inverted:
-        "text-light text-[12px] leading-[20px] md:leading-[18px] md:tracking-[0.6px]",
-      payment:
-        "text-[12px] leading-[12px] text-light tracking-[0.2px] md:leading-[18px] md:tracking-[0.6px]",
-      address:
-        "text-light text-[12px] leading-[20px] md:text-[14px] md:leading-[22px] md:tracking-[0.2px]",
-    },
-  },
-});
-
-type HorizontalCardProps = {
+export type HorizontalCardProps = {
   icon?: React.ReactNode;
   mainText?: string;
   secondaryText?: string;
@@ -75,6 +52,7 @@ type HorizontalCardProps = {
   mainTextClassName?: string;
   secondaryTextClassName?: string;
   editIcon?: React.ReactNode;
+  labelClassName?: string;
 } & VariantProps<typeof cardVariants> &
   React.ComponentPropsWithoutRef<"div">;
 
@@ -96,10 +74,91 @@ export const HorizontalCard = forwardRef<HTMLDivElement, HorizontalCardProps>(
       mainTextClassName,
       secondaryTextClassName,
       editIcon,
+      labelClassName,
       ...props
     },
     ref
   ) => {
+    const renderMainText = () => {
+      if (!mainText) return null;
+
+      if (variant === "address") {
+        return (
+          <TextBody
+            size="sm"
+            weight="medium"
+            useDefaultColor={true}
+            className={cn(
+              "md:text-[16px] md:leading-[23px]",
+              mainTextClassName
+            )}
+            as="span"
+          >
+            {mainText}
+          </TextBody>
+        );
+      }
+
+      return (
+        <TextBody
+          size="sm"
+          weight="medium"
+          useDefaultColor={true}
+          className={mainTextClassName}
+          as="span"
+        >
+          {mainText}
+        </TextBody>
+      );
+    };
+
+    const renderSecondaryText = () => {
+      if (!secondaryText) return null;
+
+      if (variant === "address") {
+        return (
+          <TextBody
+            size="sm"
+            weight="regular"
+            useDefaultColor={false}
+            className={cn("text-light", secondaryTextClassName)}
+            as="p"
+          >
+            {secondaryText}
+          </TextBody>
+        );
+      }
+
+      return (
+        <TextCaption
+          size="md"
+          weight="regular"
+          useDefaultColor={false}
+          className={cn("text-light", secondaryTextClassName)}
+          as="p"
+        >
+          {secondaryText}
+        </TextCaption>
+      );
+    };
+
+    const renderSubtext = () => {
+      if (variant === "address" && subtext) {
+        return (
+          <TextBody
+            size="sm"
+            weight="regular"
+            useDefaultColor={false}
+            className="text-light"
+            as="div"
+          >
+            {subtext}
+          </TextBody>
+        );
+      }
+      return subtext;
+    };
+
     return (
       <div
         ref={ref}
@@ -121,40 +180,39 @@ export const HorizontalCard = forwardRef<HTMLDivElement, HorizontalCardProps>(
             </div>
           )}
 
-          <div className="flex flex-col gap-1">
+          <div
+            className={cn(
+              "flex flex-col gap-1",
+              variant !== "address" && "items-center"
+            )}
+          >
+            {variant === "default" && renderSecondaryText()}
+
             <div className="flex items-center gap-2">
-              {mainText && (
-                <span
-                  className={cn(
-                    cardMainTextVariants({ variant }),
-                    mainTextClassName
-                  )}
-                >
-                  {mainText}
-                </span>
-              )}
+              {renderMainText()}
+
               {defaultBadge && <DefaultBadge />}
             </div>
 
-            {secondaryText && (
-              <p
-                className={cn(
-                  cardSecondaryTextVariants({ variant }),
-                  secondaryTextClassName
-                )}
-              >
-                {secondaryText}
-              </p>
-            )}
+            {(variant === "inverted" || variant === "payment") &&
+              renderSecondaryText()}
 
-            {subtext}
+            {variant === "address" && (
+              <>
+                {renderSecondaryText()}
+                {renderSubtext()}
+              </>
+            )}
           </div>
         </div>
 
         {label && (
-          <div className="flex items-center gap-1 p-2 text-primary text-[12px] leading-[14px] font-medium tracking-[0.1px] md:text-[14px] md:leading-[20px] md:tracking-[0.3px] flex-shrink-0">
+          <div className="flex items-center gap-1 p-2 flex-shrink-0">
             {editable && editIcon}
-            <p>{label}</p>
+
+            <TextBody weight="medium" size="sm" className={labelClassName}>
+              {label}
+            </TextBody>
           </div>
         )}
       </div>

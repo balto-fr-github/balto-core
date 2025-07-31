@@ -2,7 +2,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "../../utils/cn";
 
-const textTitleVariants = cva("font-mackinac", {
+export const textTitleVariants = cva("font-mackinac", {
   variants: {
     size: {
       sm: "text-[14px] leading-[18px] md:text-[16px] md:leading-[22px]",

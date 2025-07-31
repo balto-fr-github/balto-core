@@ -3,14 +3,14 @@ import { useState } from "react";
 import { cn } from "../../utils/cn";
 import { Tab } from "./Tab";
 
-type TabData = {
+export type TabData = {
   id: string;
   label: string;
   disabled?: boolean;
   className?: string;
 };
 
-type TabsProps = {
+export type TabsProps = {
   tabs: TabData[];
   defaultActiveTab?: string;
   onTabChange?: (tabId: string) => void;

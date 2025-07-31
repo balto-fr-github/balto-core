@@ -1,6 +1,7 @@
 import { cn } from "../../utils/cn";
+import { TextBody } from "../typography";
 
-type TabProps = {
+export type TabProps = {
   label: string;
   isActive: boolean;
   onClick: () => void;
@@ -18,10 +19,14 @@ export const Tab: React.FC<TabProps> = ({
   const isTrulyActive = isActive && !disabled;
 
   return (
-    <button
+    <TextBody
+      as="button"
       type="button"
+      size="md"
+      weight="regular"
+      useDefaultColor={false}
       className={cn(
-        "px-4 py-[7px] rounded-lg text-[16px] leading-[23px] text-center",
+        "px-4 py-[7px] rounded-lg text-center",
         disabled
           ? "cursor-not-allowed text-light bg-bright-blue-5 border-bright-blue-5"
           : "text-primary cursor-pointer hover:bg-bright-blue-10 hover:border-bright-blue-10",
@@ -32,6 +37,6 @@ export const Tab: React.FC<TabProps> = ({
       disabled={disabled}
     >
       {label}
-    </button>
+    </TextBody>
   );
 };

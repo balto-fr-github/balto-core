@@ -1,1 +1,1 @@
-export { TopBar } from "./TopBar";
+export { TopBar, topBarVariants, type TopBarProps } from "./TopBar";

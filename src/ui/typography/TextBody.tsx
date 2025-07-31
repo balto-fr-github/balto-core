@@ -4,7 +4,7 @@ import { cn } from "../../utils/cn";
 
 type ElementType = keyof JSX.IntrinsicElements;
 
-const textBodyVariants = cva("font-inter", {
+export const textBodyVariants = cva("font-inter", {
   variants: {
     size: {
       sm: "text-[12px] leading-[20px] md:text-[14px] md:leading-[22px]",

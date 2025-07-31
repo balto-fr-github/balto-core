@@ -10,7 +10,9 @@ module.exports = {
         light: "#777777",
         error: {
           default: "#DC2626",
+          60: "#DC2626",
           70: "#B91C1C",
+          80: "#991B1B",
           5: "#FEF2F2",
         },
         "bright-blue": {

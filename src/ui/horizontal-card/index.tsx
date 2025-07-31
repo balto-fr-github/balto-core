@@ -1,1 +1,5 @@
-export { HorizontalCard } from "./HorizontalCard";
+export {
+  HorizontalCard,
+  type HorizontalCardProps,
+  cardVariants,
+} from "./HorizontalCard";

@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 import { cn } from "../../utils/cn";
 
-const topBarVariants = cva(
+export const topBarVariants = cva(
   "flex items-center justify-between border-b border-core-neutral-grey-300 sticky top-0 z-40 bg-white",
   {
     variants: {

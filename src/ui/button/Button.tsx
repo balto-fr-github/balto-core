@@ -8,10 +8,12 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 import { cn } from "../../utils/cn";
 import { LoadingSpinner, LoadingSpinnerProps } from "../loading-spinner";
+import { TextBody } from "../typography/TextBody";
+import { TextCaption } from "../typography/TextCaption";
 
-const buttonVariants = cva(
+export const buttonVariants = cva(
   [
-    "inline-flex items-center justify-center rounded-lg font-inter font-medium transition-colors",
+    "inline-flex items-center justify-center rounded-lg transition-colors",
     "focus-visible:ring-2 focus:outline-none focus:ring-bright-blue-10",
     "disabled:cursor-not-allowed",
   ],
@@ -27,8 +29,10 @@ const buttonVariants = cva(
         ghost:
           "text-neutral-default hover:text-secondary disabled:text-disabled active:text-neutral-pressed",
         link: "text-neutral-default hover:text-secondary disabled:text-disabled active:text-neutral-pressed",
-        critical:
+        ghostCritical:
           "text-error-default hover:text-error-70 disabled:text-disabled active:text-error-default",
+        primaryCritical:
+          "bg-error-60 hover:bg-error-70 text-[#F2F2F2] disabled:bg-neutral-disabled active:bg-error-80",
       },
       size: {
         sm: "",
@@ -40,77 +44,72 @@ const buttonVariants = cva(
       {
         variant: "conversion",
         size: "md",
-        class:
-          "px-3 py-2 font-medium text-sm tracking-[0.3px] text-center font-normal text-inverted",
+        class: "px-3 py-2",
       },
       {
         variant: "conversion",
         size: "lg",
-        class:
-          "px-4 py-3 font-medium text-sm tracking-[0.3px] text-center font-normal text-inverted",
+        class: "px-4 py-3",
       },
       {
         variant: "primary",
         size: "md",
-        class:
-          "px-3 py-2 font-medium text-sm tracking-[0.3px] text-center font-normal text-inverted",
+        class: "px-3 py-2",
       },
       {
         variant: "primary",
         size: "lg",
-        class:
-          "px-4 py-3 font-medium text-sm tracking-[0.3px] text-center font-normal text-inverted",
+        class: "px-4 py-3",
       },
       {
         variant: "secondary",
         size: "md",
-        class:
-          "px-3 py-2 font-medium text-sm tracking-[0.3px] text-center font-normal text-primary",
+        class: "px-3 py-2",
       },
       {
         variant: "secondary",
         size: "lg",
-        class:
-          "px-4 py-3 font-medium text-sm tracking-[0.3px] text-center font-normal text-primary",
+        class: "px-4 py-3",
       },
       {
         variant: "ghost",
         size: "sm",
-        class: "p-2 font-medium text-sm tracking-[0.3px]",
+        class: "p-2",
       },
       {
         variant: "ghost",
         size: "md",
-        class: "p-2 font-medium text-sm tracking-[0.3px]",
+        class: "p-2",
       },
       {
         variant: "ghost",
         size: "lg",
-        class: "p-2 text-[12px] leading-[18px] tracking-[0.6px]",
+        class: "p-2",
       },
       {
         variant: "link",
         size: "sm",
-        class:
-          "p-1 text-center font-normal text-[12px] leading-[18px] tracking-[0.6px] underline decoration-[#5E5E5E] decoration-[0.72px] underline-offset-[1.2px]",
+        class: "p-1",
       },
       {
         variant: "link",
         size: "md",
-        class:
-          "p-1 text-center font-normal text-[14px] leading-[22px] tracking-[0.2px] underline decoration-[#5E5E5E] decoration-[0.84px] underline-offset-[1.12px]",
+        class: "p-1",
       },
       {
         variant: "link",
         size: "lg",
-        class:
-          "p-1 text-center font-normal text-[16px] leading-[23px] underline decoration-[#5E5E5E] decoration-[0.96px] underline-offset-[1.28px]",
+        class: "p-1",
       },
       {
-        variant: "critical",
+        variant: "ghostCritical",
         size: "md",
-        class:
-          "p-2 text-center font-medium text-[14px] leading-[20px] tracking-[0.3px]",
+        class: "p-2",
+      },
+      {
+        variant: "primaryCritical",
+        size: "lg",
+        class: "px-4 py-3",
       },
     ],
     defaultVariants: {
@@ -148,6 +147,56 @@ export const Button: ForwardRefExoticComponent<
   ) => {
     const finalSize = size ?? getDefaultSize(variant ?? "primary");
 
+    const renderText = () => {
+      switch (finalSize) {
+        case "lg":
+          return (
+            <TextBody
+              size="md"
+              weight="medium"
+              useDefaultColor={false}
+              as="span"
+            >
+              {children}
+            </TextBody>
+          );
+        case "md":
+          return (
+            <TextBody
+              size="sm"
+              weight="medium"
+              useDefaultColor={false}
+              as="span"
+            >
+              {children}
+            </TextBody>
+          );
+        case "sm":
+          return (
+            <TextCaption
+              size="md"
+              weight="semibold"
+              isLink={true}
+              useDefaultColor={false}
+              as="span"
+            >
+              {children}
+            </TextCaption>
+          );
+        default:
+          return (
+            <TextBody
+              size="sm"
+              weight="medium"
+              useDefaultColor={false}
+              as="span"
+            >
+              {children}
+            </TextBody>
+          );
+      }
+    };
+
     return (
       <button
         ref={ref}
@@ -163,7 +212,7 @@ export const Button: ForwardRefExoticComponent<
           />
         )}
 
-        {children}
+        {renderText()}
       </button>
     );
   }
@@ -180,7 +229,8 @@ function getDefaultSize(
     secondary: "md",
     ghost: "md",
     link: "sm",
-    critical: "md",
+    ghostCritical: "md",
+    primaryCritical: "lg",
   } as const;
 
   return defaultSizes[variant];
