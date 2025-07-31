@@ -164,7 +164,7 @@ export const Button: ForwardRefExoticComponent<
               weight="medium"
               useDefaultColor={false}
               as="div"
-              className={textContainerClassName}
+              className={cn(textContainerClassName)}
             >
               {children}
             </TextBody>
@@ -176,7 +176,7 @@ export const Button: ForwardRefExoticComponent<
               weight="medium"
               useDefaultColor={false}
               as="div"
-              className={textContainerClassName}
+              className={cn(textContainerClassName)}
             >
               {children}
             </TextBody>
@@ -189,7 +189,7 @@ export const Button: ForwardRefExoticComponent<
               isLink={true}
               useDefaultColor={false}
               as="div"
-              className={textContainerClassName}
+              className={cn(textContainerClassName)}
             >
               {children}
             </TextCaption>
@@ -201,7 +201,7 @@ export const Button: ForwardRefExoticComponent<
               weight="medium"
               useDefaultColor={false}
               as="div"
-              className={textContainerClassName}
+              className={cn(textContainerClassName)}
             >
               {children}
             </TextBody>
