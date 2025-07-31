@@ -1,5 +1,3 @@
-import { useState } from "react";
-
 import { cn } from "../../utils/cn";
 import { Tab } from "./Tab";
 
@@ -12,26 +10,21 @@ export type TabData = {
 
 export type TabsProps = {
   tabs: TabData[];
-  defaultActiveTab?: string;
-  onTabChange?: (tabId: string) => void;
+  activeTab: string;
+  onTabChange: (tabId: string) => void;
   className?: string;
 };
 
 export const Tabs: React.FC<TabsProps> = ({
   tabs,
-  defaultActiveTab,
+  activeTab,
   onTabChange,
   className,
 }) => {
-  const [activeTab, setActiveTab] = useState(
-    defaultActiveTab || tabs[0]?.id || ""
-  );
-
   const handleTabClick = (tabId: string) => {
     if (tabId === activeTab) return;
 
-    setActiveTab(tabId);
-    onTabChange?.(tabId);
+    onTabChange(tabId);
   };
 
   return (
