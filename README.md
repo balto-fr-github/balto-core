@@ -38,6 +38,8 @@ All UI components are available via `@balto-fr-github/balto-core/ui`:
 - **Button** - Primary interaction elements with multiple variants
 - **HorizontalCard** - Horizontal layout cards
 - **HorizontalProductCard** - Product-specific horizontal cards
+- **LoadingSpinner** - Loading state indicators
+- **Modal** (Modal, IconModal, ImageModal, FormModal, ModalIcon) - Modal dialog components
 - **ProductCard** - Vertical product display cards
 - **QuantitySelector** - Input controls for quantity values
 - **Tabs** (Tab, Tabs) - Tabbed navigation components
@@ -51,6 +53,25 @@ All UI components are available via `@balto-fr-github/balto-core/ui`:
   - **TextBody** - Body text content
   - **TextLabel** - Form labels
   - **TextCaption** - Caption text
+
+#### Typography Components: `useDefaultColor` Prop
+
+All typography components (except `DisplayHeading`) include a `useDefaultColor` prop:
+
+- **`useDefaultColor={true}`** (default): Applies the primary text color (`text-primary`)
+- **`useDefaultColor={false}`**: No default color is applied, allowing you to set custom colors via className
+
+```tsx
+// Uses default primary color
+<TextBody useDefaultColor={true}>Default colored text</TextBody>
+
+// No default color - you can apply custom colors
+<TextBody useDefaultColor={false} className="text-blue-500">
+  Custom colored text
+</TextBody>
+```
+
+**Note**: `DisplayHeading` has `text-primary` built-in and doesn't support the `useDefaultColor` prop.
 
 ### Constants
 
@@ -94,6 +115,8 @@ import {
   Button,
   QuantitySelector,
   Badge,
+  LoadingSpinner,
+  Modal,
 } from "@balto-fr-github/balto-core/ui";
 import { DisplayHeading, TextBody } from "@balto-fr-github/balto-core/ui";
 
@@ -107,10 +130,11 @@ function App() {
       <Badge variant="bg-fill" color="blue">
         Status
       </Badge>
+      <LoadingSpinner size="md" />
       <DisplayHeading size="xl" weight="bold">
         Welcome
       </DisplayHeading>
-      <TextBody>This is body text content.</TextBody>
+      <TextBody useDefaultColor={true}>This is body text content.</TextBody>
     </div>
   );
 }
@@ -247,16 +271,24 @@ module.exports = {
 };
 ```
 
-### 3. Import Styles (Optional)
+### 3. Import Styles in Your Global CSS (Required)
 
-If you want to use the pre-compiled CSS instead of building with Tailwind:
+**You must add this import to your consuming project's global CSS file** (usually `global.css` or `globals.css`):
 
 ```css
-/* In your main CSS file */
+/* In your global.css file */
 @import "@balto-fr-github/balto-core/styles";
+
+/* Your other global styles */
 ```
 
-**Note**: Using the pre-compiled CSS is not recommended as it may conflict with your own Tailwind build and doesn't allow for customization.
+This import is required for:
+
+- Font face declarations and font loading
+- Any additional component styles not covered by Tailwind classes
+- Proper styling and theming of the UI components
+
+**Note**: This replaces the optional import mentioned in the previous setup. The styles import is now **required** for proper component functionality.
 
 ## Why This Setup is Required
 
@@ -266,7 +298,7 @@ The UI components use custom colors and utilities defined in the library's Tailw
 - `text-inverted`, `text-primary`
 - `font-inter`, `font-mackinac` utility classes for consistent typography
 
-Without proper Tailwind configuration in your consuming project, these custom styles won't be available and the components will lose their styling.
+Without proper Tailwind configuration and styles import in your consuming project, these custom styles won't be available and the components will lose their styling.
 
 ## Component Examples
 
@@ -281,7 +313,7 @@ import { Button } from "@balto-fr-github/balto-core/ui";
 <Button variant="secondary" size="sm">Secondary</Button>
 <Button variant="ghost">Ghost Button</Button>
 <Button variant="link">Link Button</Button>
-<Button variant="critical">Delete</Button>
+<Button variant="primaryCritical">Delete</Button>
 
 // With loading state
 <Button variant="primary" loading>Loading...</Button>
@@ -290,12 +322,26 @@ import { Button } from "@balto-fr-github/balto-core/ui";
 ### Typography
 
 ```tsx
-import { DisplayHeading, TextHeading, TextTitle, TextBody } from "@balto-fr-github/balto-core/ui";
+import {
+  DisplayHeading,
+  TextHeading,
+  TextTitle,
+  TextBody,
+  TextLabel,
+  TextCaption
+} from "@balto-fr-github/balto-core/ui";
 
 <DisplayHeading size="xl" weight="bold">Main Title</DisplayHeading>
 <TextHeading size="lg" weight="regular">Section Heading</TextHeading>
-<TextTitle size="md" weight="link">Linked Title</TextTitle>
-<TextBody>This is body text content with proper spacing.</TextBody>
+<TextTitle size="md" weight="bold">Subsection Title</TextTitle>
+<TextBody useDefaultColor={true}>This is body text content.</TextBody>
+<TextLabel size="md" weight="medium">Form Label</TextLabel>
+<TextCaption size="md" weight="regular">Caption text</TextCaption>
+
+// Custom colored typography
+<TextBody useDefaultColor={false} className="text-blue-500">
+  Custom colored body text
+</TextBody>
 ```
 
 ### Badge
@@ -306,6 +352,37 @@ import { Badge } from "@balto-fr-github/balto-core/ui";
 <Badge variant="bg-fill" color="blue" size="medium">Active</Badge>
 <Badge variant="bg-outline" color="green" size="small">Success</Badge>
 <Badge variant="bg-fill" color="orange" size="large">Warning</Badge>
+```
+
+### LoadingSpinner
+
+```tsx
+import { LoadingSpinner } from "@balto-fr-github/balto-core/ui";
+
+<LoadingSpinner size="sm" />
+<LoadingSpinner size="md" />
+<LoadingSpinner size="lg" />
+```
+
+### Modal
+
+```tsx
+import { Modal, IconModal, ImageModal, FormModal } from "@balto-fr-github/balto-core/ui";
+
+// Basic modal
+<Modal isOpen={isOpen} onClose={() => setIsOpen(false)}>
+  <p>Modal content</p>
+</Modal>
+
+// Icon modal
+<IconModal
+  isOpen={isOpen}
+  onClose={() => setIsOpen(false)}
+  icon={<SomeIcon />}
+  title="Modal Title"
+>
+  Modal content
+</IconModal>
 ```
 
 ## Publishing & Version Management
