@@ -1,0 +1,73 @@
+import { forwardRef } from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+
+import { cn } from "../../utils/cn";
+
+export const toggleVariants = cva(
+  "inline-flex items-center rounded-full transition-all duration-200",
+  {
+    variants: {
+      size: {
+        sm: "w-[40px] h-[20px] p-[2px]",
+        lg: "w-[44px] h-[24px] p-[2px]",
+      },
+      disabled: {
+        true: "bg-gray-200 cursor-not-allowed",
+        false: "bg-black cursor-pointer",
+      },
+      checked: {
+        true: "bg-neutral-90",
+        false: "bg-neutral-10",
+      },
+    },
+    compoundVariants: [
+      {
+        disabled: false,
+        class: "hover:bg-neutral-700",
+      },
+    ],
+    defaultVariants: {
+      size: "lg",
+      disabled: false,
+      checked: false,
+    },
+  }
+);
+
+export type ToggleProps = {
+  checked: boolean;
+  onChange:
+    | ((checked: boolean) => void)
+    | React.Dispatch<React.SetStateAction<boolean>>;
+  className?: string;
+} & VariantProps<typeof toggleVariants> &
+  React.ComponentPropsWithoutRef<"button">;
+
+export const Toggle = forwardRef<HTMLButtonElement, ToggleProps>(
+  (
+    { checked, onChange, disabled = false, size = "lg", className, ...props },
+    ref
+  ) => {
+    return (
+      <button
+        ref={ref}
+        role="switch"
+        aria-checked={checked}
+        disabled={disabled}
+        onClick={() => !disabled && onChange(!checked)}
+        className={cn(toggleVariants({ size, disabled, checked }), className)}
+        {...props}
+      >
+        <span
+          className={cn(
+            "bg-white rounded-full transition-all duration-200",
+            checked ? "translate-x-5" : "translate-x-0",
+            size === "sm" ? "w-4 h-4" : "w-5 h-5"
+          )}
+        />
+      </button>
+    );
+  }
+);
+
+Toggle.displayName = "Toggle";

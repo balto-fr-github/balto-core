@@ -1,5 +1,5 @@
 // Export all constants here
 // Example: export const SOME_CONSTANT = "value";
 
-// Empty export to make this a valid module
+// When you add constants, remove the line below and add actual exports
 export {};

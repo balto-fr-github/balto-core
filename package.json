@@ -1,6 +1,6 @@
 {
   "name": "@balto-fr-github/balto-core",
-  "version": "0.1.4",
+  "version": "0.1.4-beta.0",
   "description": "Reusable React UI components, constants, and utilities for all Balto frontend projects",
   "main": "dist/index.mjs",
   "types": "dist/index.d.mts",
@@ -12,10 +12,6 @@
     "TROUBLESHOOTING.md"
   ],
   "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "types": "./dist/index.d.mts"
-    },
     "./ui": {
       "import": "./dist/ui.mjs",
       "types": "./dist/ui.d.mts"
@@ -72,6 +68,10 @@
     "typescript": "^5.8.3"
   },
   "dependencies": {
+    "class-variance-authority": "^0.7.1",
     "tailwind-merge": "^3.3.1"
+  },
+  "engines": {
+    "node": ">=22"
   }
 }
