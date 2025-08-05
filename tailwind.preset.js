@@ -20,6 +20,7 @@ module.exports = {
           hover: "#0150B9",
           disabled: "#B6D0FC",
           pressed: "#003B7E",
+          20: "#7AADFA",
           10: "#B6D0FC",
           5: "#F2F3FF",
         },
