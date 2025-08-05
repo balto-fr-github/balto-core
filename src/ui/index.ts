@@ -11,3 +11,4 @@ export * from "./title-block";
 export * from "./toggle";
 export * from "./top-bar";
 export * from "./typography";
+export * from "./navigation-menu";
