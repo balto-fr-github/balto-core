@@ -13,3 +13,4 @@ export * from "./top-bar";
 export * from "./typography";
 export * from "./input";
 export * from "./input-phone";
+export * from "./input-dropdown";
