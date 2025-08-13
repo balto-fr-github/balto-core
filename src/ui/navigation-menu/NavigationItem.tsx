@@ -1,7 +1,8 @@
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "../../utils/cn";
 import { forwardRef, ButtonHTMLAttributes } from "react";
-import { TextBody } from "../typography";
+import { cva, type VariantProps } from "class-variance-authority";
+
+import { cn } from "../../utils/cn";
+import { TextBody, TextCaption } from "../typography";
 
 export const navigationItemVariants = cva(
   "text-primary flex items-center rounded transition-colors ease-in-out hover:bg-bright-blue-10 active:bg-bright-blue-20",
@@ -15,7 +16,7 @@ export const navigationItemVariants = cva(
       },
       layout: {
         expanded: "flex-row w-[245px] gap-2 p-3",
-        collapsed: "flex-col justify-center w-[100px] gap-1.5 px-0.5 py-1",
+        collapsed: "flex-col justify-center w-[68px] gap-1.5 px-0.5 py-2 h-12",
       },
     },
     defaultVariants: {
@@ -86,7 +87,7 @@ export const NavigationItem = forwardRef<
             {label}
           </TextBody>
         ) : (
-          <p className="text-[10px] leading-[18px] tracking-[0.6px] font-inter">
+          <p className="text-[10px] leading-3 tracking-[0.2px] font-inter">
             {label}
           </p>
         )}
