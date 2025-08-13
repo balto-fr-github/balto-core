@@ -9,6 +9,7 @@ import {
   ReactNode,
   useCallback,
 } from "react";
+
 import { cn } from "../../utils/cn";
 import {
   inputDropdownContainerStyles,
@@ -57,7 +58,6 @@ export const InputDropdown = forwardRef<HTMLDivElement, InputDropdownProps>(
     const dropdownRef = useRef<HTMLDivElement>(null);
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-    /** Default to first option if no value provided */
     useEffect(() => {
       if (!value && options.length > 0) {
         onChange(options[0].value);
@@ -97,7 +97,6 @@ export const InputDropdown = forwardRef<HTMLDivElement, InputDropdownProps>(
       [closeDropdown]
     );
 
-    /** Listen for click outside */
     useEffect(() => {
       document.addEventListener("mousedown", handleClickOutside);
       return () =>
