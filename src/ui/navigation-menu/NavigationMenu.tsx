@@ -1,6 +1,7 @@
-import { NavigationItem, type NavigationItemProps } from "./NavigationItem";
-import { cn } from "../../utils/cn";
 import { forwardRef, HTMLAttributes } from "react";
+
+import { cn } from "../../utils/cn";
+import { NavigationItem, type NavigationItemProps } from "./NavigationItem";
 
 export interface NavigationMenuProps extends HTMLAttributes<HTMLDivElement> {
   items: (Omit<NavigationItemProps, "layout"> & {
