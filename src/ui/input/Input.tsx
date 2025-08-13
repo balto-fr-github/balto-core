@@ -1,8 +1,9 @@
 "use client";
 
-import { cva } from "class-variance-authority";
-import { cn } from "../../utils/cn";
 import { InputHTMLAttributes, ReactNode, forwardRef } from "react";
+import { cva } from "class-variance-authority";
+
+import { cn } from "../../utils/cn";
 import { TextBody } from "../typography";
 import AlertIcon from "./AlertIcon";
 import ClearIcon from "./ClearIcon";
@@ -87,15 +88,15 @@ export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
       )}
 
       <div className={inputWrapperVariants({ disabled })}>
-        {leftElement && (
+        {leftElement && isValueEmpty && (
           <span className="absolute left-3 top-1/2 -translate-y-1/2 text-disabled">
             {leftElement}
           </span>
         )}
-        {placeholder && (
+        {placeholder && isValueEmpty && (
           <span
             className={cn(
-              "absolute left-0 top-1/2 -translate-y-1/2 text-disabled pointer-events-none",
+              "absolute left-0 top-1/2 -translate-y-1/2 text-disabled pointer-events-none pl-3",
               leftElement && "pl-9"
             )}
           >
