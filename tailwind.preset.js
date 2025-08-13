@@ -34,6 +34,7 @@ module.exports = {
           90: "#272727",
         },
         info: {
+          5: "#EFF6FF",
           10: "#DBEAFE",
           20: "#BFDBFE",
           50: "#3B82F6",
