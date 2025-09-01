@@ -84,25 +84,6 @@ Available via `@balto-fr-github/balto-core/utils`:
 
 - **cn** - Class name utility function (combines clsx and tailwind-merge)
 
-## Font Management
-
-**Fonts are now included in this package**, eliminating the need to manage font files in each consuming project:
-
-### Included Fonts
-
-- **Inter** (Light, Regular, Medium, SemiBold, Bold, Black)
-- **P22 Mackinac Pro** (Book, Medium, Bold, ExtraBold)
-
-### Font Configuration
-
-The fonts are automatically available when using the Tailwind preset. The package includes:
-
-- `@font-face` declarations for all font weights
-- Font files (.woff2) bundled with the package
-- Tailwind utilities: `font-inter` and `font-mackinac`
-
-This reduces redundancy across projects and ensures consistent font loading.
-
 ## Setup
 
 ### 1. Import Components, Constants, and Utils
@@ -296,7 +277,6 @@ The UI components use custom colors and utilities defined in the library's Tailw
 
 - `bg-bright-blue-default`, `bg-bright-blue-hover`, `bg-bright-blue-disabled`
 - `text-inverted`, `text-primary`
-- `font-inter`, `font-mackinac` utility classes for consistent typography
 
 Without proper Tailwind configuration and styles import in your consuming project, these custom styles won't be available and the components will lose their styling.
 
