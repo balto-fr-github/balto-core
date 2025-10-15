@@ -24,6 +24,7 @@ export const badgeVariants = cva(
         green: "",
         white: "",
         grey: "",
+        "bright-blue": "",
       },
     },
     compoundVariants: [
@@ -31,6 +32,11 @@ export const badgeVariants = cva(
         variant: "bg-fill",
         color: "blue",
         class: "bg-info-20 text-primary",
+      },
+      {
+        variant: "bg-fill",
+        color: "bright-blue",
+        class: "bg-bright-blue-50 text-inverted",
       },
       {
         variant: "bg-fill",
