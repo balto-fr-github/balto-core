@@ -1,3 +1,108 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .qna-item ul,
+  .qna-item li {
+    list-style: disc !important;
+  }
+
+  .qna-item li {
+    list-style: disc outside none;
+    display: list-item;
+    margin-left: 1.5em;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .hide-scrollbar {
+    scrollbar-width: none;
+    /* For Firefox */
+    -ms-overflow-style: none;
+    /* For Internet Explorer and Edge */
+  }
+
+  .flipper {
+    position: relative;
+  }
+  
+  .flipper {
+    perspective: 600px;
+    -webkit-perspective: 600px;
+    -moz-perspective: 600px;
+  
+    -webkit-transform-origin: 100% center;
+    -moz-transform-origin: 100% center;
+    -ms-transform-origin: 100% center;
+    transform-origin: 100% center;
+  }
+  
+  .front-card,
+  .back-card {
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  
+    -webkit-backface-visibility: hidden;
+    -moz-backface-visibility: hidden;
+    backface-visibility: hidden;
+  
+    -o-transition: transform .6s ease-in-out;
+    -moz-transition: transform .6s ease-in-out;
+    -webkit-transition: transform .6s ease-in-out;
+    transition: transform .6s ease-in-out;
+  
+  }
+  
+  .front-card {
+    z-index: 2;
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+  }
+  
+  .flipper.flip .front-card {
+    -webkit-transform: rotateX(180deg);
+    -moz-transform: rotateX(180deg);
+    transform: rotateX(180deg);
+  }
+  
+  .back-card {
+    -webkit-transform: rotateX(-180deg);
+    -moz-transform: rotateX(-180deg);
+    transform: rotateX(-180deg);
+    z-index: 2;
+    pointer-events: none; /* Prevent interaction when flipped away */
+  }
+  
+  .flipper.flip .back-card {
+    -webkit-transform: rotateX(0deg);
+    -moz-transform: rotateX(0deg);
+    transform: rotateX(0deg);
+    pointer-events: auto; /* Re-enable interaction when flipped to front */
+  }
+
+  .testimonial-carousel-swiper .testimonial-carousel-swiper-slide {
+    height: unset;
+  }
+  
+  .testimonial-carousel-swiper {
+    align-items: stretch;
+  }
+  
+  .testimonial-carousel-swiper .swiper-pagination-bullet {
+    background: #B5E3AA
+  }
+  
+  .testimonial-carousel-swiper .swiper-pagination-bullet-active {
+    background: #155634
+  }
+  
+  .testimonial-carousel-swiper .swiper-pagination {
+    margin-top: 20px;
+    position: static !important;
+  }
+}
