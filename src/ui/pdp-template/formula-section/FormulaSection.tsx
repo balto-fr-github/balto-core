@@ -39,14 +39,13 @@ type Props = {
   descriptionContentSnack?: Array<DescriptionContent>;
   ImageComponent?: React.ComponentType<ImageLikeProps>;
   formulaVideoSrc: string;
+  isSpanish?: boolean;
 };
 
 type GetContent<T> = {
   content: Array<T>;
   mappingContent: Array<T>;
 };
-
-let tabs: Array<string> = ["Bénéfices", "Description", "Composition"];
 
 export default function Formula(props: Props) {
   const {
@@ -63,9 +62,24 @@ export default function Formula(props: Props) {
     descriptionContentSnack,
     ImageComponent = DefaultImg,
     formulaVideoSrc,
+    isSpanish = false,
   } = props;
 
-  const [choosenTab, setChoosenTab] = useState<string>("Bénéfices");
+  const tabLabels = {
+    benefits: isSpanish ? "Beneficios" : "Bénéfices",
+    description: isSpanish ? "Descripción" : "Description",
+    composition: isSpanish ? "Composición" : "Composition",
+  };
+
+  const defaultTabs = [
+    tabLabels.benefits,
+    tabLabels.description,
+    tabLabels.composition,
+  ];
+  const snackTabs = [tabLabels.benefits, tabLabels.composition];
+
+  const [choosenTab, setChoosenTab] = useState<string>(tabLabels.benefits);
+  const [tabs, setTabs] = useState<Array<string>>(defaultTabs);
   const productType = productName.split("-")[0];
 
   function getContent<T>({ content, mappingContent }: GetContent<T>): Array<T> {
@@ -78,14 +92,15 @@ export default function Formula(props: Props) {
 
   useEffect(() => {
     if (productType == "friandises") {
-      tabs = ["Bénéfices", "Composition"];
+      setTabs(snackTabs);
       return;
     }
-  }, [productName]);
+    setTabs(defaultTabs);
+  }, [productName, isSpanish]);
 
   const renderTabs = () => {
     switch (choosenTab) {
-      case "Bénéfices":
+      case tabLabels.benefits:
         return (
           <Suspense
             fallback={<Loader color={colorTheme.darkColor} height="700px" />}
@@ -104,7 +119,7 @@ export default function Formula(props: Props) {
           </Suspense>
         );
 
-      case "Description":
+      case tabLabels.description:
         return (
           <Suspense
             fallback={<Loader color={colorTheme.darkColor} height="700px" />}
@@ -122,7 +137,7 @@ export default function Formula(props: Props) {
           </Suspense>
         );
 
-      case "Composition":
+      case tabLabels.composition:
         return (
           <Suspense
             fallback={<Loader color={colorTheme.darkColor} height="700px" />}
