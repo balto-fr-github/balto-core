@@ -36,7 +36,7 @@ type ClassNames = Partial<{
 
 export type ClientObservantProps = {
   colorTheme: ClientObservantTheme;
-  title: string;
+  title: React.ReactNode;
   items: ClientObservantItem[];
   vectorSrc: { sm: string; md: string; xl: string };
   ImageComponent?: React.ComponentType<ImageLikeProps>;
@@ -87,14 +87,7 @@ const ClientObservant = memo(function ClientObservant({
           classNames?.section ?? ""
         )}
       >
-        <h2
-          className={cn(
-            "text-center font-mackinac text-[33px] font-medium leading-none tracking-[-0.02em] text-neutral-grey-800 sm:text-[40px] sm:leading-[40px] sm:tracking-[-0.8px] lg:text-[48px] lg:leading-[48px] lg:tracking-[-0.96px]",
-            classNames?.heading ?? ""
-          )}
-        >
-          {title}
-        </h2>
+        {title}
 
         <div
           className={cn(
