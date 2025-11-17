@@ -7,7 +7,7 @@ export type Theme = {
 export type DescriptionContent = {
   title: string;
   desc?: Array<string>;
-  descHtml?: string;
+  descHtml?: string | React.ReactNode;
   subDesc?: Array<string>;
 };
 

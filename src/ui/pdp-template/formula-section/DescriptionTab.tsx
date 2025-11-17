@@ -79,8 +79,10 @@ export default function DescriptionTab(props: Props) {
                 isActive ? "opacity-100 " : "max-h-0 overflow-hidden opacity-0"
               } space-y-[24px]  font-inter text-[12px] leading-[16.8px] tracking-[-0.24px] text-[#333] transition-all duration-300 ease-in-out sm:text-[20px] sm:leading-[28px] sm:tracking-[-0.4px]`}
             >
-              {data.descHtml && (
+              {data.descHtml && typeof data.descHtml === "string" ? (
                 <div dangerouslySetInnerHTML={{ __html: data.descHtml }} />
+              ) : (
+                data.descHtml
               )}
 
               {data.desc?.map((data, index) => {
