@@ -1,6 +1,5 @@
 import Hls from "hls.js";
 import { useEffect, useRef, useState, useCallback } from "react";
-import { GrFormClose } from "react-icons/gr";
 import mime from "mime-types";
 
 import { hasNativeHLS } from "../../../utils/hasNativeHls";
@@ -129,7 +128,19 @@ const VideoPlayer = ({
           className="absolute right-0 top-0 z-50 mr-[10px] mt-[10px] rounded-[50%] border border-black bg-white p-[6px]"
           aria-label="Close video"
         >
-          <GrFormClose size={24} />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={2}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+            aria-hidden="true"
+            focusable="false"
+          >
+            <path d="M6 6L18 18M6 18L18 6" />
+          </svg>
         </button>
 
         <video

@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { createPortal } from "react-dom";
-import { GrFormClose } from "react-icons/gr";
 
 import Card from "./Card";
 import { IngredientsType, Theme } from "./types";
@@ -236,7 +235,19 @@ const IngredientsSection = ({
                   className="absolute right-1 top-1 flex h-[20px] w-[20px] cursor-pointer items-center justify-center rounded-full border-2 border-black"
                   onClick={() => setShowFullIngredients(false)}
                 >
-                  <GrFormClose />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    fill="none"
+                    aria-hidden="true"
+                    focusable="false"
+                  >
+                    <path d="M6 6L18 18M6 18L18 6" />
+                  </svg>
                 </div>
 
                 <ImageComponent
