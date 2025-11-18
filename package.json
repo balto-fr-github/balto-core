@@ -1,6 +1,6 @@
 {
   "name": "@balto-fr-github/balto-core",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "description": "Reusable React UI components, constants, and utilities for all Balto frontend projects",
   "main": "dist/index.mjs",
   "types": "dist/index.d.mts",
