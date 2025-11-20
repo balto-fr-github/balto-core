@@ -73,16 +73,19 @@ const IngredientsSection = ({
 
   const getInitialCount = () => {
     let total = 6;
-    if (isBelowXl) total = 4;
-    if (isBelowMd && progressRef.current) {
+
+    if (isBelowMd) {
       total = cardContent.length;
-      setProgressWidth((0 / 100) * progressRef.current.clientWidth);
+    } else if (isBelowXl) {
+      total = 4;
     }
+
     return total;
   };
 
   const initialSlice = useMemo(() => {
     const n = getInitialCount();
+
     return cardContent.slice(0, n);
   }, [isBelowMd, isBelowXl, isXlUp, cardContent]);
 
@@ -109,12 +112,18 @@ const IngredientsSection = ({
         (scrolledPercentage / 100) * progressRef.current.clientWidth
       );
     };
+
+    // Initialize progress width for mobile
+    if (isBelowMd && progressRef.current) {
+      setProgressWidth(0);
+    }
+
     const el = cardRef.current;
     if (el) el.addEventListener("scroll", handleScroll);
     return () => {
       if (el) el.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [isBelowMd]);
 
   const viewMoreData = () => {
     setToggleViewAllData(true);
