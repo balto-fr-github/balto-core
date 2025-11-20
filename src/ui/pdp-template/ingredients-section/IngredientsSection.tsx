@@ -255,7 +255,7 @@ const IngredientsSection = ({
                   alt={modalImage.alt}
                   width={1000}
                   height={1000}
-                  className="w-full"
+                  className="w-full max-h-[80dvh]"
                 />
               </div>
             </div>
