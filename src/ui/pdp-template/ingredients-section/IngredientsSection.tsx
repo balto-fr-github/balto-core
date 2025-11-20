@@ -217,7 +217,7 @@ const IngredientsSection = ({
       {showFullIngredients &&
         createPortal(
           <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-[16px] backdrop-blur-sm"
+            className="fixed top-0 z-50 flex h-full w-full items-center justify-center bg-black bg-opacity-60 p-4 backdrop-blur-sm"
             onClick={() => setShowFullIngredients(false)}
           >
             <div
@@ -225,11 +225,11 @@ const IngredientsSection = ({
               onClick={(e) => e.stopPropagation()}
             >
               <div
-                className="relative space-y-[3.99px] rounded-[7.98px] border-2 p-[24px]"
                 style={{
                   borderColor: colorTheme.darkColor,
                   backgroundColor: colorTheme.lightColor,
                 }}
+                className="relative space-y-[3.99px] rounded-[7.98px] border-2 p-[24px]"
               >
                 <div
                   className="absolute right-1 top-1 flex h-[20px] w-[20px] cursor-pointer items-center justify-center rounded-full border-2 border-black"
@@ -253,8 +253,8 @@ const IngredientsSection = ({
                 <ImageComponent
                   src={modalImage.src}
                   alt={modalImage.alt}
-                  width={400}
-                  height={400}
+                  width={1000}
+                  height={1000}
                   className="w-full"
                 />
               </div>
