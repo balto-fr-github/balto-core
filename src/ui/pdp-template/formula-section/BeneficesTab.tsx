@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, Fragment } from "react";
 
 import type { Benefices, Theme } from "./types";
 import VideoPlayer from "./VideoPlayer";
@@ -26,7 +26,7 @@ const renderWidthXtraLarge = (
           const textAlign =
             index == 0 || index == 3 ? "text-right" : "text-left";
           return (
-            <>
+            <Fragment key={index}>
               <div
                 className={`${textAlign} ${
                   index == 1 ? "hidden" : ""
@@ -51,7 +51,7 @@ const renderWidthXtraLarge = (
               >
                 <VideoPlayer formulaVideoSrc={formulaVideoSrc} />
               </div>
-            </>
+            </Fragment>
           );
         })}
       </div>
@@ -125,6 +125,7 @@ const renderMobile = (
               isActive ? "space-y-[8px]" : "space-y-[0px]"
             }`}
             onClick={() => handleFormulaClicked(index)}
+            key={index}
           >
             <div className="flex flex-row justify-between">
               <p
@@ -194,7 +195,7 @@ export default function BeneficesTab(props: Props) {
     <div className="mt-[32px] flex h-full w-full flex-col items-center md:mt-[40px] xl:mt-[50px]">
       <div className="">
         <p
-          className="w-[343px] text-center font-mackinac text-[33px] font-medium leading-none tracking-[-0.02em] text-neutral-grey-800 sm:text-[40px] md:w-[700px] md:leading-[40px] md:tracking-[-0.8px] lg:leading-[48px] xl:text-[48px] xl:tracking-[-0.96px]"
+          className="w-[343px] text-center font-mackinac text-[33px] leading-none tracking-[-0.02em] text-neutral-grey-800 sm:text-[40px] md:w-[700px] md:leading-[40px] md:tracking-[-0.8px] lg:leading-[48px] xl:text-[48px] xl:tracking-[-0.96px]"
           dangerouslySetInnerHTML={{
             __html: beneficesTabTitle,
           }}
