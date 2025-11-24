@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type Theme = {
   darkColor: string;
   middleColor: string;
@@ -9,6 +11,8 @@ export type HrefLink = {
   href: string;
 };
 
+export type BackDesc = string | ReactNode | Array<string | ReactNode>;
+
 export type IngredientsType = {
   frontTitle: string;
   frontTitleImage?: string;
@@ -16,7 +20,7 @@ export type IngredientsType = {
   frontBouche: string;
   frontImage: string;
   backTitle: string;
-  backDesc: Array<string>;
+  backDesc: BackDesc;
   backSubTitle: string;
   hrefLink: Array<HrefLink>;
   isTitleItalic?: boolean;

@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 
-import type { IngredientsType, Theme } from "./types";
+import type { BackDesc, IngredientsType, Theme } from "./types";
 import { cn } from "../../../utils/cn";
 import {
   type ImageLikeProps,
@@ -15,6 +15,23 @@ type CardProps = {
   ImageComponent?: React.ComponentType<ImageLikeProps>;
   plusIcon: string;
   minusIcon: string;
+};
+
+const renderBackDesc = (backDesc: BackDesc) => {
+  if (backDesc == null) return null;
+
+  if (!Array.isArray(backDesc)) {
+    return backDesc;
+  }
+
+  return backDesc.map((item, idx) => (
+    <p
+      key={idx}
+      className="font-inter text-[16px] font-normal leading-[140%] tracking-[-0.32px] text-[#525252]"
+    >
+      {item}
+    </p>
+  ));
 };
 
 export default function Card(props: CardProps) {
@@ -184,14 +201,9 @@ export default function Card(props: CardProps) {
           <p className="font-inter text-[18px] font-bold leading-[normal] tracking-[-0.36px] text-[#525252]">
             {content.backTitle}
           </p>
-          <div className="space-y-[12px] font-inter text-[16px] font-normal leading-[140%] tracking-[-0.32px] text-[#525252]">
-            {content.backDesc.map((data, index) => {
-              return (
-                <p key={index} className="">
-                  {data}
-                </p>
-              );
-            })}
+
+          <div className="space-y-[12px]">
+            {renderBackDesc(content.backDesc)}
           </div>
           <p className="font-inter text-[18px] font-bold leading-[normal] tracking-[-0.36px] text-[#525252]">
             {content.backSubTitle}
