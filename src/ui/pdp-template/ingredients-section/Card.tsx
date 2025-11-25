@@ -44,7 +44,9 @@ export default function Card(props: CardProps) {
     plusIcon,
     minusIcon,
   } = props;
-  const isDental = productName === "complement-hygiene-dentaire";
+  const isDental =
+    productName === "complement-hygiene-dentaire" ||
+    productName === "complemento-higiene-dental";
 
   const [progressHeight, setProgressHeight] = useState<number>(0);
   const [isBackCard, setIsBackCard] = useState<boolean>(false);
@@ -155,10 +157,7 @@ export default function Card(props: CardProps) {
           <div className="flex h-full w-[100px] flex-col items-end justify-between">
             <div
               className={cn(
-                "rounded-[4px]",
-                isDental
-                  ? "h-[80px] w-[80px] lg:h-[100px] lg:w-[100px]"
-                  : "h-[100px] w-[100px]"
+                "rounded-[4px] h-[80px] w-[80px] lg:h-[100px] lg:w-[100px]"
               )}
             >
               <ImageComponent
@@ -166,7 +165,7 @@ export default function Card(props: CardProps) {
                 alt={"ingredient one"}
                 width={300}
                 height={300}
-                className={cn(isDental && "mt-6 md:mt-0")}
+                className={cn("mt-7 md:mt-0")}
               />
             </div>
 
