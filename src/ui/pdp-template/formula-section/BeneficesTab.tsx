@@ -195,7 +195,7 @@ export default function BeneficesTab(props: Props) {
     <div className="mt-[32px] flex h-full w-full flex-col items-center md:mt-[40px] xl:mt-[50px]">
       <div className="">
         <p
-          className="w-[343px] text-center font-mackinac text-[33px] leading-none tracking-[-0.02em] text-neutral-grey-800 sm:text-[40px] md:w-[700px] md:leading-[40px] md:tracking-[-0.8px] lg:leading-[48px] xl:text-[48px] xl:tracking-[-0.96px]"
+          className="w-full sm:w-[343px] text-center font-mackinac text-[33px] leading-none tracking-[-0.02em] text-neutral-grey-800 sm:text-[40px] md:w-[700px] md:leading-[40px] md:tracking-[-0.8px] lg:leading-[48px] xl:text-[48px] xl:tracking-[-0.96px]"
           dangerouslySetInnerHTML={{
             __html: beneficesTabTitle,
           }}
