@@ -125,7 +125,7 @@ export default function Card(props: CardProps) {
               <p
                 style={{ color: colorTheme.darkColor }}
                 className={cn(
-                  "flex items-center gap-2 break-words font-mackinac text-[24px] font-bold leading-[24px]",
+                  "flex items-center gap-0 lg:gap-2 break-words font-mackinac text-[24px] font-bold leading-[24px]",
                   content.isTitleItalic && "italic"
                 )}
               >
@@ -135,7 +135,7 @@ export default function Card(props: CardProps) {
                   <ImageComponent
                     src={content.frontTitleImage}
                     alt="Balto Ingredient"
-                    className="-mt-1"
+                    className="-mt-1 flex-shrink-0 max-lg:scale-[0.8]"
                     width={84}
                     height={20}
                   />
