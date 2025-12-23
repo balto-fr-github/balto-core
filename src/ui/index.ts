@@ -16,3 +16,4 @@ export * from "./input-phone";
 export * from "./input-dropdown";
 export * from "./navigation-menu";
 export * from "./pdp-template";
+export * from "./toast";
