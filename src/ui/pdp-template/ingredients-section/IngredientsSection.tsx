@@ -143,6 +143,8 @@ const IngredientsSection = ({
       <button
         onClick={viewLessData}
         className="hidden rounded-[4px] border border-white px-[12px] py-[8px] text-center font-inter text-[14px] font-medium leading-normal text-white sm:px-[16px] sm:py-[14px] md:block xl:px-[32px] xl:py-[16px] xl:text-[18px] xl:font-semibold"
+        data-test="pdp-ingredients-show-less"
+        data-desc="Show fewer ingredients"
       >
         {texts.viewLessText}
       </button>
@@ -150,6 +152,8 @@ const IngredientsSection = ({
       <button
         onClick={viewMoreData}
         className="hidden rounded-[4px] border border-white px-[12px] py-[8px] text-center font-inter text-[14px] font-medium leading-normal text-white sm:px-[16px] sm:py-[14px] md:block xl:px-[32px] xl:py-[16px] xl:text-[18px] xl:font-semibold"
+        data-test="pdp-ingredients-show-more"
+        data-desc="Show more ingredients"
       >
         {texts.viewMoreText}
       </button>
@@ -161,6 +165,8 @@ const IngredientsSection = ({
       style={{ backgroundColor: colorTheme.darkColor }}
       className="h-full w-full"
       id="ingredients-section"
+      data-test="pdp-ingredients"
+      data-desc="Main ingredients section"
     >
       <div className="container mx-auto px-[16px] py-[32px] sm:px-[32px] sm:py-[40px] xl:px-[32px] xl:py-[60px]">
         <div className="space-y-[16px]">
@@ -169,8 +175,15 @@ const IngredientsSection = ({
             dangerouslySetInnerHTML={{
               __html: texts.title ?? "",
             }}
+            data-test="pdp-ingredients-title"
+            data-desc="pdp ingredients - title"
           />
-          <p className="whitespace-pre-line text-center font-inter text-[16px] leading-none text-white xl:text-[18px]">
+
+          <p
+            className="whitespace-pre-line text-center font-inter text-[16px] leading-none text-white xl:text-[18px]"
+            data-test="pdp-ingredients-subtitle"
+            data-desc="pdp ingredients - subtitle"
+          >
             {texts.subtitle}
           </p>
         </div>
@@ -178,6 +191,8 @@ const IngredientsSection = ({
         <div
           ref={cardRef}
           className="hide-scrollbar mt-[32px] flex h-full space-x-[24px] overflow-x-scroll sm:mt-[40px] sm:grid-cols-2 md:grid md:gap-[16px] md:space-x-0 xl:grid-cols-3 xl:gap-[24px]"
+          data-test="pdp-ingredients-list"
+          data-desc="pdp ingredients - list container"
         >
           {content.map((data, index) => {
             return (
@@ -217,6 +232,8 @@ const IngredientsSection = ({
           <button
             onClick={() => setShowFullIngredients(true)}
             className="rounded-[4px] border border-white px-[12px] py-[8px] text-center font-inter text-[14px] font-medium leading-normal text-white sm:px-[16px] sm:py-[14px] xl:px-[32px] xl:py-[16px] xl:text-[18px] xl:font-semibold"
+            data-test="pdp-ingredients-view-composition"
+            data-desc="View composition"
           >
             {texts.viewFullIngredientsText}
           </button>

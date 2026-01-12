@@ -17,7 +17,11 @@ export default function CompositionTab({
   compositionImage,
 }: Props) {
   return (
-    <div className="mt-[16px] flex h-full w-[343px] max-w-[343px] items-center justify-center sm:w-[500px] sm:max-w-none md:mt-[40px] lg:mt-[50px]">
+    <div
+      className="mt-[16px] flex h-full w-[343px] max-w-[343px] items-center justify-center sm:w-[500px] sm:max-w-none md:mt-[40px] lg:mt-[50px]"
+      data-test="pdp-composition"
+      data-desc="Composition tab content"
+    >
       <div
         style={{
           borderColor: colorTheme.darkColor,
@@ -30,6 +34,8 @@ export default function CompositionTab({
             src={compositionImage.imageUrl}
             alt={compositionImage.alt}
             height={1000}
+            data-test="pdp-composition-image"
+            data-desc="Ingredients composition image"
           />
         </div>
       </div>

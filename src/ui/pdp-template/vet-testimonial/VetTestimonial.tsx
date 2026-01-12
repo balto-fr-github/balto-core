@@ -68,6 +68,7 @@ const VetTestimonial = memo(function VetTestimonial({
     <div
       className={cn("w-full", classNames?.root)}
       style={bg ? { backgroundColor: bg } : undefined}
+      data-test="pdp-expert-endorsement"
     >
       <div
         className={cn(

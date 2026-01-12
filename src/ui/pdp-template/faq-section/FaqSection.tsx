@@ -53,14 +53,19 @@ function FaqHeader({
           "text-center font-mackinac text-[33px] font-medium leading-none tracking-[-0.02em] text-white md:text-[40px] md:tracking-[-0.8px] xl:text-[48px] xl:tracking-[-0.96px]",
           classNames?.title
         )}
+        data-test="pdp-faq-title"
+        data-desc="FAQ title"
       >
         {title}
       </h2>
+
       <p
         className={cn(
           "mt-4 text-center font-medium leading-[19.36px] text-neutral-green-100 md:tracking-[-0.32px] xl:text-lg xl:leading-[21.78px] xl:tracking-[-0.36px]",
           classNames?.subtitle
         )}
+        data-test="pdp-faq-helper"
+        data-desc="FAQ helper"
       >
         {subtitle}
       </p>
@@ -89,6 +94,8 @@ const FaqSection = memo(function FaqSection({
       id="faq"
       className={cn("bg-dark-green text-base-white", classNames?.root)}
       style={{ backgroundColor: colorTheme?.darkColor }}
+      data-test="pdp-faq"
+      data-desc="FAQ section"
     >
       <div
         className={cn(
@@ -114,6 +121,7 @@ const FaqSection = memo(function FaqSection({
                   answer={faq.answer}
                   onClick={() => handleToggle(index)}
                   colorTheme={colorTheme}
+                  index={index}
                 />
               ))}
             </div>

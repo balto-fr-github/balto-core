@@ -44,6 +44,9 @@ export default function DescriptionTab(props: Props) {
             } cursor-pointer`}
             key={index}
             onClick={() => handleDescClicked(index)}
+            data-test="pdp-description-content"
+            data-desc="Accordion body"
+            data-index={index}
           >
             <div className="flex items-center justify-between space-x-[30px] sm:space-x-[40px]">
               <p
@@ -64,6 +67,9 @@ export default function DescriptionTab(props: Props) {
                   className={`${
                     isActive ? "" : "rotate-180"
                   } cursor-pointer transition-transform duration-300`}
+                  data-test="pdp-description-arrow"
+                  data-desc="arrow icon"
+                  data-index={index}
                 />
               </div>
             </div>
@@ -78,6 +84,9 @@ export default function DescriptionTab(props: Props) {
               className={`${
                 isActive ? "opacity-100 " : "max-h-0 overflow-hidden opacity-0"
               } space-y-[24px]  font-inter text-[12px] leading-[16.8px] tracking-[-0.24px] text-[#333] transition-all duration-300 ease-in-out sm:text-[20px] sm:leading-[28px] sm:tracking-[-0.4px]`}
+              data-test="pdp-description-text"
+              data-index={index}
+              data-desc="Description content"
             >
               {data.descHtml && typeof data.descHtml === "string" ? (
                 <div dangerouslySetInnerHTML={{ __html: data.descHtml }} />

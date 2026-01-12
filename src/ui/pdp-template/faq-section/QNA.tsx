@@ -16,9 +16,17 @@ type Props = {
   answer: React.ReactNode;
   colorTheme?: Theme;
   onClick: () => void;
+  index: number;
 };
 
-const Qna = ({ question, answer, colorTheme, onClick, isOpen }: Props) => {
+const Qna = ({
+  question,
+  answer,
+  colorTheme,
+  onClick,
+  isOpen,
+  index,
+}: Props) => {
   return (
     <>
       <div
@@ -29,6 +37,9 @@ const Qna = ({ question, answer, colorTheme, onClick, isOpen }: Props) => {
         style={{
           borderColor: colorTheme?.lightColor,
         }}
+        data-test="pdp-faq-question"
+        data-desc="FAQ question"
+        data-index={index}
       >
         <div
           className={cn(
@@ -42,6 +53,9 @@ const Qna = ({ question, answer, colorTheme, onClick, isOpen }: Props) => {
               "flex-1 font-semibold leading-[110%]",
               "md:text-lg md:leading-[110%]"
             )}
+            data-test="pdp-faq-question-text"
+            data-desc="Question text"
+            data-index={index}
           >
             {question}
           </span>
@@ -52,6 +66,9 @@ const Qna = ({ question, answer, colorTheme, onClick, isOpen }: Props) => {
               backgroundColor: colorTheme?.middleColor,
               transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
             }}
+            data-test="pdp-faq-toggle-icon"
+            data-desc="Plus / minus icon"
+            data-index={index}
           >
             {isOpen ? (
               <IconMinus
@@ -74,7 +91,12 @@ const Qna = ({ question, answer, colorTheme, onClick, isOpen }: Props) => {
             gridTemplateRows: isOpen ? "1fr" : "0fr",
           }}
         >
-          <div className="qna-item overflow-hidden pt-4 leading-[19.2px] text-neutral-grey-100 flex flex-col gap-3">
+          <div
+            className="qna-item overflow-hidden pt-4 leading-[19.2px] text-neutral-grey-100 flex flex-col gap-3"
+            data-test="pdp-faq-answer"
+            data-desc="FAQ answer content"
+            data-index={index}
+          >
             {answer}
           </div>
         </div>

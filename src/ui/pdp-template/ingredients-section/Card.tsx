@@ -28,6 +28,8 @@ const renderBackDesc = (backDesc: BackDesc) => {
     <p
       key={idx}
       className="font-inter text-[16px] font-normal leading-[140%] tracking-[-0.32px] text-[#525252]"
+      data-test="pdp-ingredient-function-content"
+      data-index={idx}
     >
       {item}
     </p>
@@ -107,12 +109,20 @@ export default function Card(props: CardProps) {
   }, []);
 
   return (
-    <div className="flipper relative" ref={cardRef} key={index}>
+    <div
+      className="flipper relative"
+      ref={cardRef}
+      key={index}
+      data-test="pdp-ingredient-card"
+      data-index={index}
+    >
       <div
         style={{ backgroundColor: colorTheme.lightColor }}
         className={cn(
           "front-card h-[270px] w-[300px] min-w-[300px] overflow-hidden rounded-[8px] px-[16px] py-[24px] md:h-[300px] md:w-full lg:h-[220px]"
         )}
+        data-test="pdp-ingredient-front"
+        data-index={index}
       >
         <div className="flex h-full w-full justify-start space-x-[12px] xl:space-x-[16px]">
           <div className="flex h-full w-full max-w-[156px] flex-col justify-between gap-1.5 sm:max-w-none">
@@ -128,6 +138,8 @@ export default function Card(props: CardProps) {
                   "flex items-center gap-0 lg:gap-2 break-words font-mackinac text-[24px] font-bold leading-[24px]",
                   content.isTitleItalic && "italic"
                 )}
+                data-test="pdp-ingredient-name"
+                data-index={index}
               >
                 {content.frontTitle}
 
@@ -142,13 +154,19 @@ export default function Card(props: CardProps) {
                 )}
               </p>
 
-              <p className="font-inter text-[14px] leading-normal tracking-[-0.02em] text-[#525252] md:text-[16px]">
+              <p
+                className="font-inter text-[14px] leading-normal tracking-[-0.02em] text-[#525252] md:text-[16px]"
+                data-test="pdp-ingredient-description"
+                data-index={index}
+              >
                 {content.frontDesc}
               </p>
             </div>
             <p
               style={{ color: colorTheme.darkColor }}
               className="font-inter text-[14px] font-semibold leading-[normal]"
+              data-test="pdp-ingredient-dosage"
+              data-index={index}
             >
               {content.frontBouche}
             </p>
@@ -166,6 +184,9 @@ export default function Card(props: CardProps) {
                 width={300}
                 height={300}
                 className={cn("mt-7 md:mt-0")}
+                data-test="pdp-ingredient-image"
+                data-index={index}
+                data-desc="Non-clickable image"
               />
             </div>
 
@@ -183,6 +204,9 @@ export default function Card(props: CardProps) {
                 onClick={() => {
                   handleFlipCard();
                 }}
+                data-test="pdp-ingredient-plus"
+                data-index={index}
+                data-desc="Plus (+) button"
               />
             </div>
           </div>
@@ -195,18 +219,27 @@ export default function Card(props: CardProps) {
           `back-card hide-scrollbar absolute top-0 flex h-[270px] w-[300px] min-w-[300px] flex-row space-x-[16px] overflow-y-scroll  rounded-[8px] px-[16px] py-[24px] md:h-[300px] md:w-full lg:h-[220px]`
         )}
         ref={backCardRef}
+        data-test="pdp-ingredient-back"
+        data-index={index}
       >
         <div className="space-y-[12px]">
-          <p className="font-inter text-[18px] font-bold leading-[normal] tracking-[-0.36px] text-[#525252]">
+          <p
+            className="font-inter text-[18px] font-bold leading-[normal] tracking-[-0.36px] text-[#525252]"
+            data-test="pdp-ingredient-function-title"
+            data-index={index}
+            data-desc="Function"
+          >
             {content.backTitle}
           </p>
 
           <div className="space-y-[12px]">
             {renderBackDesc(content.backDesc)}
           </div>
+
           <p className="font-inter text-[18px] font-bold leading-[normal] tracking-[-0.36px] text-[#525252]">
             {content.backSubTitle}
           </p>
+
           <div className="space-y-[12px] pb-[12px]">
             {content.hrefLink.map((data, index) => {
               return (
@@ -216,6 +249,8 @@ export default function Card(props: CardProps) {
                     data.href == "#" ? "" : "cursor-pointer"
                   } italic underline`}
                   onClick={() => handleHref(data.href)}
+                  data-test="pdp-ingredient-science-link"
+                  data-index={index}
                 >
                   {data.text}
                 </p>
@@ -241,6 +276,9 @@ export default function Card(props: CardProps) {
               onClick={() => {
                 handleFlipCard();
               }}
+              data-test="pdp-ingredient-minus"
+              data-index={index}
+              data-desc="Minus (-) button"
             />
           </div>
 

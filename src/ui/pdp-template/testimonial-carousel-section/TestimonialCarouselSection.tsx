@@ -43,18 +43,28 @@ const TestimonialCarouselBlock = ({
 }: TestimonialCarouselProps) => {
   const renderHeader = () => (
     <div className="space-y-4 px-4">
-      <h1 className="text-center font-mackinac text-3xl leading-none tracking-[-0.02em] text-neutral-grey-800 md:text-4xl xl:text-5xl">
+      <h1
+        className="text-center font-mackinac text-3xl leading-none tracking-[-0.02em] text-neutral-grey-800 md:text-4xl xl:text-5xl"
+        data-test="pdp-testimonials-title"
+      >
         {title}
       </h1>
 
-      <p className="text-center font-inter text-base font-medium text-neutral-grey-600 xl:text-lg">
+      <p
+        className="text-center font-inter text-base font-medium text-neutral-grey-600 xl:text-lg"
+        data-test="pdp-testimonials-subtitle"
+      >
         {description}
       </p>
     </div>
   );
 
   return (
-    <section className="container mx-auto space-y-6 bg-white py-8 md:space-y-10 md:px-8 md:py-10 xl:py-20">
+    <section
+      className="container mx-auto space-y-6 bg-white py-8 md:space-y-10 md:px-8 md:py-10 xl:py-20"
+      data-test="pdp-testimonials"
+      data-desc="Social proof section"
+    >
       {renderHeader()}
 
       <Suspense fallback={<Loader height="250px" />}>

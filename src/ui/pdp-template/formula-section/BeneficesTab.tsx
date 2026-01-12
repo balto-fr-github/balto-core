@@ -26,7 +26,11 @@ const renderWidthXtraLarge = (
           const textAlign =
             index == 0 || index == 3 ? "text-right" : "text-left";
           return (
-            <Fragment key={index}>
+            <Fragment
+              key={index}
+              data-test="pdp-benefit-item"
+              data-index={index + 1}
+            >
               <div
                 className={`${textAlign} ${
                   index == 1 ? "hidden" : ""
@@ -34,11 +38,17 @@ const renderWidthXtraLarge = (
                 key={index}
               >
                 <div className="font-mackinac text-[32px] font-bold leading-[1.2] tracking-[-0.02em] text-neutral-grey-800">
-                  <p>{data.title}</p>
+                  <p data-test="pdp-benefit-title" data-index={index + 1}>
+                    {data.title}
+                  </p>
                 </div>
 
                 <div>
-                  <p className="font-inter text-[18px] font-normal leading-[25.2px] tracking-[-0.36px] text-[#525252]">
+                  <p
+                    className="font-inter text-[18px] font-normal leading-[25.2px] tracking-[-0.36px] text-[#525252]"
+                    data-test="pdp-benefit-description"
+                    data-index={index + 1}
+                  >
                     {data.desc}
                   </p>
                 </div>
@@ -80,14 +90,20 @@ const renderWidthLarge = (
                 index == 1 ? "hidden" : ""
               } h-auto bg-white ${dashedBorderColor} space-y-[8px] rounded-[12px] p-[18px] text-left`}
               key={index}
+              data-test="pdp-benefit-item"
+              data-index={index + 1}
             >
               <div className="font-mackinac text-[24px] font-semibold leading-[28.8px] tracking-[-0.48px] text-[#333]">
-                <p>{data.title}</p>
+                <p data-test="pdp-benefit-title" data-index={index + 1}>
+                  {data.title}
+                </p>
               </div>
 
               <div>
                 <p className="font-inter text-[14px] font-normal leading-[19.6px] tracking-[-0.28px] text-[#525252]">
-                  {data.desc}
+                  <p data-test="pdp-benefit-description" data-index={index + 1}>
+                    {data.desc}
+                  </p>
                 </p>
               </div>
             </div>
@@ -126,6 +142,8 @@ const renderMobile = (
             }`}
             onClick={() => handleFormulaClicked(index)}
             key={index}
+            data-test="pdp-benefit-item"
+            data-index={index + 1}
           >
             <div className="flex flex-row justify-between">
               <p
@@ -133,6 +151,8 @@ const renderMobile = (
                 className={`${
                   isActive ? "font-bold" : "font-medium"
                 } font-mackinac text-[18px] leading-[21.6px] tracking-[-0.36px] text-[#333]`}
+                data-test="pdp-benefit-title"
+                data-index={index + 1}
               >
                 {data.title}
               </p>
@@ -159,7 +179,11 @@ const renderMobile = (
                 isActive ? "opacity-100" : "max-h-0 overflow-hidden opacity-0"
               } transition-all  duration-300 ease-in-out`}
             >
-              <p className="font-inter text-[12px] font-normal leading-[16.8px] tracking-[-0.24px] text-[#333]">
+              <p
+                className="font-inter text-[12px] font-normal leading-[16.8px] tracking-[-0.24px] text-[#333]"
+                data-test="pdp-benefit-description"
+                data-index={index + 1}
+              >
                 {data.desc}
               </p>
             </div>
@@ -192,7 +216,11 @@ export default function BeneficesTab(props: Props) {
   };
 
   return (
-    <div className="mt-[32px] flex h-full w-full flex-col items-center md:mt-[40px] xl:mt-[50px]">
+    <div
+      className="mt-[32px] flex h-full w-full flex-col items-center md:mt-[40px] xl:mt-[50px]"
+      data-test="pdp-articulations-benefits"
+      data-desc="Container utama tab benefits"
+    >
       <div className="">
         <p
           className="w-full sm:w-[343px] text-center font-mackinac text-[33px] leading-none tracking-[-0.02em] text-neutral-grey-800 sm:text-[40px] md:w-[700px] md:leading-[40px] md:tracking-[-0.8px] lg:leading-[48px] xl:text-[48px] xl:tracking-[-0.96px]"
