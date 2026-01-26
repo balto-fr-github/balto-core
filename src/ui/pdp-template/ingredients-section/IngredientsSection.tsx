@@ -143,7 +143,7 @@ const IngredientsSection = ({
       <button
         onClick={viewLessData}
         className="hidden rounded-[4px] border border-white px-[12px] py-[8px] text-center font-inter text-[14px] font-medium leading-normal text-white sm:px-[16px] sm:py-[14px] md:block xl:px-[32px] xl:py-[16px] xl:text-[18px] xl:font-semibold"
-        data-test="pdp-ingredients-show-less"
+        data-test="pdp-ingredients-card-show-less"
         data-desc="Show fewer ingredients"
       >
         {texts.viewLessText}
@@ -152,7 +152,7 @@ const IngredientsSection = ({
       <button
         onClick={viewMoreData}
         className="hidden rounded-[4px] border border-white px-[12px] py-[8px] text-center font-inter text-[14px] font-medium leading-normal text-white sm:px-[16px] sm:py-[14px] md:block xl:px-[32px] xl:py-[16px] xl:text-[18px] xl:font-semibold"
-        data-test="pdp-ingredients-show-more"
+        data-test="pdp-ingredients-card-show-more"
         data-desc="Show more ingredients"
       >
         {texts.viewMoreText}
@@ -191,8 +191,6 @@ const IngredientsSection = ({
         <div
           ref={cardRef}
           className="hide-scrollbar mt-[32px] flex h-full space-x-[24px] overflow-x-scroll sm:mt-[40px] sm:grid-cols-2 md:grid md:gap-[16px] md:space-x-0 xl:grid-cols-3 xl:gap-[24px]"
-          data-test="pdp-ingredients-list"
-          data-desc="pdp ingredients - list container"
         >
           {content.map((data, index) => {
             return (

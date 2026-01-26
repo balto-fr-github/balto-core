@@ -28,7 +28,7 @@ const renderBackDesc = (backDesc: BackDesc) => {
     <p
       key={idx}
       className="font-inter text-[16px] font-normal leading-[140%] tracking-[-0.32px] text-[#525252]"
-      data-test="pdp-ingredient-function-content"
+      data-test="pdp-ingredient-card-function-content"
       data-index={idx}
     >
       {item}
@@ -138,7 +138,7 @@ export default function Card(props: CardProps) {
                   "flex items-center gap-0 lg:gap-2 break-words font-mackinac text-[24px] font-bold leading-[24px]",
                   content.isTitleItalic && "italic"
                 )}
-                data-test="pdp-ingredient-name"
+                data-test="pdp-ingredient-card-name"
                 data-index={index}
               >
                 {content.frontTitle}
@@ -156,7 +156,7 @@ export default function Card(props: CardProps) {
 
               <p
                 className="font-inter text-[14px] leading-normal tracking-[-0.02em] text-[#525252] md:text-[16px]"
-                data-test="pdp-ingredient-description"
+                data-test="pdp-ingredient-card-description"
                 data-index={index}
               >
                 {content.frontDesc}
@@ -165,7 +165,7 @@ export default function Card(props: CardProps) {
             <p
               style={{ color: colorTheme.darkColor }}
               className="font-inter text-[14px] font-semibold leading-[normal]"
-              data-test="pdp-ingredient-dosage"
+              data-test="pdp-ingredient-card-dosage"
               data-index={index}
             >
               {content.frontBouche}
@@ -184,7 +184,7 @@ export default function Card(props: CardProps) {
                 width={300}
                 height={300}
                 className={cn("mt-7 md:mt-0")}
-                data-test="pdp-ingredient-image"
+                data-test="pdp-ingredient-card-image"
                 data-index={index}
                 data-desc="Non-clickable image"
               />
@@ -204,7 +204,7 @@ export default function Card(props: CardProps) {
                 onClick={() => {
                   handleFlipCard();
                 }}
-                data-test="pdp-ingredient-plus"
+                data-test="pdp-ingredient-card-plus"
                 data-index={index}
                 data-desc="Plus (+) button"
               />
@@ -225,7 +225,7 @@ export default function Card(props: CardProps) {
         <div className="space-y-[12px]">
           <p
             className="font-inter text-[18px] font-bold leading-[normal] tracking-[-0.36px] text-[#525252]"
-            data-test="pdp-ingredient-function-title"
+            data-test="pdp-ingredient-card-function-title"
             data-index={index}
             data-desc="Function"
           >
@@ -245,11 +245,10 @@ export default function Card(props: CardProps) {
               return (
                 <p
                   key={index}
-                  className={`font-inter text-[16px] font-normal leading-[140%] tracking-[-0.32px] text-[#525252] ${
-                    data.href == "#" ? "" : "cursor-pointer"
-                  } italic underline`}
+                  className={`font-inter text-[16px] font-normal leading-[140%] tracking-[-0.32px] text-[#525252] ${data.href == "#" ? "" : "cursor-pointer"
+                    } italic underline`}
                   onClick={() => handleHref(data.href)}
-                  data-test="pdp-ingredient-science-link"
+                  data-test="pdp-ingredient-card-science-link"
                   data-index={index}
                 >
                   {data.text}
@@ -276,7 +275,7 @@ export default function Card(props: CardProps) {
               onClick={() => {
                 handleFlipCard();
               }}
-              data-test="pdp-ingredient-minus"
+              data-test="pdp-ingredient-card-minus"
               data-index={index}
               data-desc="Minus (-) button"
             />
