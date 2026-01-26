@@ -56,8 +56,8 @@
   "peerDependencies": {
     "hls.js": "^1.6.13",
     "mime-types": "^3.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "react": "^19.0.3",
+    "react-dom": "^19.0.3",
     "react-responsive": "^9.0.2"
   },
   "devDependencies": {
