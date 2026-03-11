@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 
 import { cn } from "../../utils/cn";
 
 export interface AnnouncementBarProps {
-  contents: string[];
+  contents: ReactNode[];
   containerClassName?: string;
   textWrapperClassName?: string;
   textStripClassName?: string;
