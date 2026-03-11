@@ -86,7 +86,7 @@ export const AnnouncementBar = ({
       {/* Text area - centered in full width, with overflow hidden for sliding effect */}
       <div
         className={cn(
-          "absolute inset-y-0 min-[400px]:inset-x-14 sm:inset-x-[90px] xl:inset-x-[130px] flex h-full w-auto items-center justify-center overflow-hidden",
+          "absolute inset-y-0 min-[400px]:inset-x-10 sm:inset-x-[90px] xl:inset-x-[130px] flex h-full w-auto items-center justify-center overflow-hidden",
           textWrapperClassName
         )}
       >
