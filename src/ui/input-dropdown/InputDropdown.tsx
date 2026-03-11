@@ -166,9 +166,9 @@ export const InputDropdown = forwardRef<HTMLDivElement, InputDropdownProps>(
                     className={cn(
                       "flex items-center gap-2 px-2 py-2 hover:bg-info-5 cursor-pointer transition-colors duration-300 ease-in rounded",
                       value === option.value &&
-                        "bg-bright-blue-10 hover:bg-bright-blue-10",
+                      "bg-bright-blue-10 hover:bg-bright-blue-10",
                       option.disabled &&
-                        "text-disabled cursor-not-allowed hover:bg-white"
+                      "text-disabled cursor-not-allowed hover:bg-white"
                     )}
                   >
                     {option.label}

@@ -1,3 +1,4 @@
+export * from "./alert";
 export * from "./announcement-bar";
 export * from "./badge";
 export * from "./button";
@@ -19,3 +20,4 @@ export * from "./navigation-menu";
 export * from "./pdp-template";
 export * from "./toast";
 export * from "./switch";
+export * from "./checkbox";
