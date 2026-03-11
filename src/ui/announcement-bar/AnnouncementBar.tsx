@@ -22,7 +22,7 @@ const DEFAULT_ACTIVE_DOT_CLASSES = "w-1 h-1 rounded-full bg-[#919191]";
 const DEFAULT_INACTIVE_DOT_CLASSES =
   "w-1 h-1 rounded-full bg-[#ABABAB] opacity-30";
 
-const TRANSITION_DURATION_MS = 300;
+const TRANSITION_DURATION_MS = 600;
 
 export const AnnouncementBar = ({
   contents,
@@ -93,7 +93,7 @@ export const AnnouncementBar = ({
         <div
           className={cn(
             "flex h-full w-full ease-in-out",
-            isTransitioning && "transition-transform duration-300",
+            isTransitioning && "transition-transform duration-[600ms]",
             textStripClassName
           )}
           style={{
